@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from "react"
 import { ChoiceContext } from "./ChoiceProvider"
 import { Link } from "react-router-dom"
+import Button from "react-bootstrap/Button";
+
 
 const defaultWeightId = 1
 
@@ -23,7 +25,7 @@ export const ChoiceList = () => {
     }
     </div>
     <div className="choice__add">
-      <button 
+      <Button variant="primary"
           onClick={evt => {
             addChoice({
               name: "Untitled Choice",
@@ -33,7 +35,7 @@ export const ChoiceList = () => {
           }}
           className="btn">
           Add Choice
-      </button>
+      </Button>{' '}
     </div>
   </section>
   </>
