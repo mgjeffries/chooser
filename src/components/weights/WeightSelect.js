@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from "react"
 import { WeightContext } from "./WeightProvider"
 import { ChoiceContext } from "../choices/ChoiceProvider"
+import Button from "react-bootstrap/Button"
 
 export const WeightList = (props) => {
   const { weights, getWeights } = useContext(WeightContext)
@@ -50,22 +51,22 @@ export const WeightList = (props) => {
           })  
           }
         </select>
-        <button type="submit"
+        <Button type="submit"
             onClick={evt => {
                 evt.preventDefault() // Prevent browser from submitting the form
                 changeWeight()
             }}
             className="btn btn-primary">
             Save
-        </button>
+        </Button>
       </div>
-    : <button 
+    : <Button variant="outline-info"
         onClick={evt => {
           setIsWeightChanging(true)
         }}
         className="btn">
         {weight.emoji+" "+weight.name}
-      </button>
+      </Button>
     }
 
     
