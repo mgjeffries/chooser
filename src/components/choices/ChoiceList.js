@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react"
 import { ChoiceContext } from "./ChoiceProvider"
 import { Link } from "react-router-dom"
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 
 const defaultWeightId = 1
@@ -18,9 +19,11 @@ export const ChoiceList = () => {
     <div className="choice__list">
     {
         choices.map(choice => {
-            return <Link key={choice.id} to={`/choices/${choice.id}`}>
-                <h3>{choice.name}</h3>
-            </Link>
+            return <Card body key={choice.id}>
+              <Link to={`/choices/${choice.id}`}>
+                  <h3>{choice.name}</h3>
+              </Link>
+            </Card>
         })
     }
     </div>
