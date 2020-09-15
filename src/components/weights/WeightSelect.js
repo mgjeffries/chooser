@@ -25,9 +25,9 @@ export const WeightList = (props) => {
   const weightRef = useRef(null)
 
   const changeWeight = () => {
-    const newWeight = parseInt(weightRef.current.value)
+    const weightId = parseInt(weightRef.current.value)
     const newChoice = choice
-    newChoice.weightId = newWeight
+    newChoice.weightId = weightId
     editChoice(newChoice)
     setIsWeightChanging(false)
   }
