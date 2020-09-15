@@ -9,6 +9,7 @@ export const ChoiceDetail = (props) => {
   const { weights, getWeights } = useContext(WeightContext)
   const [ choice, setChoice ] = useState({})
   const [ weight, setWeight ] = useState({})
+  const [ isWeightChanging, setIsWeightChanging ] = useState(false)
 
   useEffect( () => {
     getChoices()
@@ -26,14 +27,22 @@ export const ChoiceDetail = (props) => {
   <section className="choice">
     <div>
       {choice.name}
-      <button 
+    </div>
+    
+    <div className="choice__weight">
+      {
+      (isWeightChanging)
+      ? <WeightList />
+      : <button 
           onClick={evt => {
-            // WeightList()
+            setIsWeightChanging(true)
           }}
           className="btn">
-          {weight.name}
-      </button>
+          {weight.emoji+" "+weight.name}
+        </button>
+      }
     </div>
+
     {/* TODO: display the factors, options and ratings */}
   </section>
   </>
