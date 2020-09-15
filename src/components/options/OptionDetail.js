@@ -8,7 +8,6 @@ export const OptionDetail = ({option}) => {
 
   return <div className="option__detail">
       <div className="option__name">{option.name}</div>
-      <div className="option__multiplier">{option.multiplier}</div>
       <Button 
         onClick={evt => {
           deleteOption(option)

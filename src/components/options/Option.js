@@ -26,7 +26,6 @@ export const Option = ({option}) => {
       </Modal.Footer>
     </Modal>
     <div className="option__name">{option.name}</div>
-    <div className="option__multiplier">{option.multiplier}</div>
     <Button 
       onClick={handleShow} > 
       detail
