@@ -4,7 +4,7 @@ export const WeightContext = React.createContext()
 
 export const WeightProvider = (props) => {
   const [ weights, setWeights ] = useState([])
-  const [ activeWeightId, setActiveWeightId ] = useState({})
+  const [ activeWeightId, setActiveWeightId ] = useState(0)
 
   const getWeights = () => {
     return fetch("http://localhost:8088/weights")
