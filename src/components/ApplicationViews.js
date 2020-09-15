@@ -10,12 +10,14 @@ export const ApplicationViews = (props) => {
   return (
     <>
       <ChoiceProvider>
-        <Route exact path="/">
-            <ChoiceList />
-        </Route>
-        <Route path="/choices/:choiceId(\d+)" render={
-            props => <ChoiceDetail {...props} />
-        } />
+        <WeightProvider>
+          <Route exact path="/">
+              <ChoiceList />
+          </Route>
+          <Route path="/choices/:choiceId(\d+)" render={
+              props => <ChoiceDetail {...props} />
+          } />
+        </WeightProvider>
       </ChoiceProvider>
 
       <Route exact path="/weight">
