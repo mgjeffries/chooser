@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react"
 import { FactorContext } from "./FactorProvider"
 import { ChoiceContext } from "../choices/ChoiceProvider"
+import Button from "react-bootstrap/Button"
+
 
 export const AddFactor = (props) => {
   const { addFactor } = useContext(FactorContext)
@@ -19,7 +21,7 @@ export const AddFactor = (props) => {
 
 
   return <>
-  <button 
+  <Button 
       onClick={evt => {
         addFactor({
           name: "Untitled Factor",
@@ -29,6 +31,6 @@ export const AddFactor = (props) => {
       }}
       className="btn">
       Add Factor
-  </button>
+  </Button>
   </>
 }
