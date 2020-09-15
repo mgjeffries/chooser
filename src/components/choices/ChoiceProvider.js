@@ -22,8 +22,19 @@ export const ChoiceProvider = (props) => {
     .then(getChoices)
   }
 
+  const editChoice = choice => {
+    return fetch(`http://localhost:8088/choices/${choice.id}`,  {
+      method: "PUT",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(choice)
+  })
+    .then(getChoices)
+  }
+
   return <ChoiceContext.Provider value={{
-    choices, getChoices, addChoice
+    choices, getChoices, addChoice, editChoice
   }}>
     {props.children}
   </ChoiceContext.Provider>

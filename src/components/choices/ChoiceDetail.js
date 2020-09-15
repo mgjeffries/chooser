@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { ChoiceContext } from "./ChoiceProvider"
+import { WeightList } from "../weights/WeightSelect"
 
 
 export const ChoiceDetail = (props) => {
@@ -20,6 +21,8 @@ export const ChoiceDetail = (props) => {
     <div>
       {choice.name}
     </div>
+    <WeightList {...props} />
+
     {/* TODO: display the factors, options and ratings */}
   </section>
   </>
