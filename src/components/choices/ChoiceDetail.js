@@ -1,23 +1,31 @@
 import React, { useContext, useEffect, useState, useRef } from "react"
 import { ChoiceContext } from "./ChoiceProvider"
 import { WeightList } from "../weights/WeightSelect"
+import { AddFactor } from "../factors/AddFactor"
+import { FactorContext } from "../factors/FactorProvider"
+import { Factor } from "../factors/Factor"
 
 
 export const ChoiceDetail = (props) => {
   const { choices, getChoices, editChoice } = useContext(ChoiceContext)
+  const { factors, getFactors } = useContext(FactorContext)
   const [ choice, setChoice ] = useState({})
+  const [ choiceFactors, setChoiceFactors ] = useState([])
   const [ isChoiceNameChanging, setIsChoiceNameChanging ] = useState(false)
 
-  const choiceRef = useRef(choice)
+  const choiceRef = useRef(null)
 
   useEffect( () => {
     getChoices()
+    getFactors()
   }, [])
 
   useEffect(() => {
       const choice = choices.find(c => c.id === parseInt(props.match.params.choiceId)) || {}
+      const choiceFactors = factors.filter(f => f.choiceId === choice.id)
       setChoice(choice)
-  }, [choices])
+      setChoiceFactors(choiceFactors)
+  }, [choices, factors])
 
   const changeName = () => {
     const newChoice = choice
@@ -28,7 +36,8 @@ export const ChoiceDetail = (props) => {
 
   return <> 
   <section className="choice">
-    <div>
+    
+    <div className="choice__name">
       { 
       (isChoiceNameChanging)
       ? <>
@@ -53,7 +62,12 @@ export const ChoiceDetail = (props) => {
       }
     </div>
     <WeightList {...props} />
-
+    <AddFactor {...props} />
+    {
+      choiceFactors.map(cf => {
+        return <Factor factor={cf} key={cf.id}/>
+      })
+    }
     {/* TODO: display the factors, options and ratings */}
   </section>
   </>
