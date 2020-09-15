@@ -1,26 +1,40 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useState, useRef } from "react"
 import { WeightContext } from "./WeightProvider"
+import { ChoiceContext } from "../choices/ChoiceProvider"
 
 export const WeightList = (props) => {
-  const { weights, activeWeightId, getWeights } = useContext(WeightContext)
+  const { weights, getWeights, editWeight } = useContext(WeightContext)
+  const { choices, getChoices } = useContext(ChoiceContext)
   const [ isWeightChanging, setIsWeightChanging ] = useState(false)
   const [ weight, setWeight ] = useState({})
+  const [ choice, setChoice ] = useState({})
+
 
   useEffect( () => {
     getWeights()
+    getChoices()
   }, [])
 
   useEffect(() => {
-    const weight = weights.find(w => w.id === parseInt(activeWeightId)) || {}
+    const choice = choices.find(c => c.id === parseInt(props.match.params.choiceId)) || {}
+    const weight = weights.find(w => w.id === choice.weightId) || {}
     setWeight(weight)
-  }, [activeWeightId])
+    setChoice(choice)
+  }, [choices])
+
+  const weightRef = useRef(null)
+
+  const changeWeight = () => {
+    const newWeight = weightRef.active.value
+    
+  }
 
   return <> 
   <section className="weight__list">
 
     {
     (isWeightChanging)
-    ? <>
+    ? <div>
         <label htmlFor="weight">Assign a weight</label>
         <select defaultValue={weight.id} name="weight" className="weight__select">
           {
@@ -33,7 +47,15 @@ export const WeightList = (props) => {
           })  
           }
         </select>
-      </>
+        <button type="submit"
+            onClick={evt => {
+                evt.preventDefault() // Prevent browser from submitting the form
+
+            }}
+            className="btn btn-primary">
+            Save
+        </button>
+      </div>
     : <button 
         onClick={evt => {
           setIsWeightChanging(true)

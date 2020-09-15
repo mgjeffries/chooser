@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react"
 import { ChoiceContext } from "./ChoiceProvider"
-import { WeightList } from "../weights/WeightList"
-import { WeightContext, WeightProvider } from "../weights/WeightProvider"
+import { WeightList } from "../weights/WeightSelect"
+import { WeightContext } from "../weights/WeightProvider"
 
 
 export const ChoiceDetail = (props) => {
   const { choices, getChoices } = useContext(ChoiceContext)
-  const { setActiveWeightId } = useContext(WeightContext)
   const [ choice, setChoice ] = useState({})
 
   useEffect( () => {
@@ -15,7 +14,6 @@ export const ChoiceDetail = (props) => {
 
   useEffect(() => {
       const choice = choices.find(c => c.id === parseInt(props.match.params.choiceId)) || {}
-      setActiveWeightId(choice.weightId) 
       setChoice(choice)
   }, [choices])
 
