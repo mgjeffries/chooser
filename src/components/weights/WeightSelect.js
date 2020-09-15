@@ -3,8 +3,8 @@ import { WeightContext } from "./WeightProvider"
 import { ChoiceContext } from "../choices/ChoiceProvider"
 
 export const WeightList = (props) => {
-  const { weights, getWeights, editWeight } = useContext(WeightContext)
-  const { choices, getChoices } = useContext(ChoiceContext)
+  const { weights, getWeights } = useContext(WeightContext)
+  const { choices, getChoices, editChoice } = useContext(ChoiceContext)
   const [ isWeightChanging, setIsWeightChanging ] = useState(false)
   const [ weight, setWeight ] = useState({})
   const [ choice, setChoice ] = useState({})
@@ -25,8 +25,11 @@ export const WeightList = (props) => {
   const weightRef = useRef(null)
 
   const changeWeight = () => {
-    const newWeight = weightRef.active.value
-    
+    const newWeight = parseInt(weightRef.current.value)
+    const newChoice = choice
+    newChoice.weightId = newWeight
+    editChoice(newChoice)
+    setIsWeightChanging(false)
   }
 
   return <> 
@@ -36,7 +39,7 @@ export const WeightList = (props) => {
     (isWeightChanging)
     ? <div>
         <label htmlFor="weight">Assign a weight</label>
-        <select defaultValue={weight.id} name="weight" className="weight__select">
+        <select defaultValue={weight.id} name="weight" ref={weightRef} className="weight__select">
           {
           weights.map(w => {
             return  (
@@ -50,7 +53,7 @@ export const WeightList = (props) => {
         <button type="submit"
             onClick={evt => {
                 evt.preventDefault() // Prevent browser from submitting the form
-
+                changeWeight()
             }}
             className="btn btn-primary">
             Save
