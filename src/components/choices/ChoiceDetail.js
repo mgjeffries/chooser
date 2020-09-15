@@ -14,7 +14,6 @@ export const ChoiceDetail = (props) => {
   const [ isChoiceNameChanging, setIsChoiceNameChanging ] = useState(false)
 
   const choiceRef = useRef(null)
-  const factorDialogRef = useRef(null)
 
   useEffect( () => {
     getChoices()
@@ -37,10 +36,7 @@ export const ChoiceDetail = (props) => {
 
   return <> 
   <section className="choice">
-    <dialog className="dialog dialog--choice" ref={factorDialogRef}>
-        <div>factor detail</div>
-        <button className="button--close" onClick={e => factorDialogRef.current.close()}>Close</button>
-    </dialog>
+    
     <div className="choice__name">
       { 
       (isChoiceNameChanging)
@@ -69,7 +65,7 @@ export const ChoiceDetail = (props) => {
     <AddFactor {...props} />
     {
       choiceFactors.map(cf => {
-        return <Factor factor={cf} factorDialogRef={factorDialogRef} key={cf.id}/>
+        return <Factor factor={cf} key={cf.id}/>
       })
     }
     {/* TODO: display the factors, options and ratings */}
