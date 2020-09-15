@@ -22,9 +22,15 @@ export const FactorProvider = (props) => {
     .then(getFactors)
   }
 
+  const deleteFactor = factor => {
+    return fetch(`http://localhost:8088/factors/${factor.id}`, {
+      method: "DELETE"
+    })
+    .then(getFactors)
+  }
 
   return <FactorContext.Provider value={{
-    factors, getFactors, addFactor
+    factors, getFactors, addFactor, deleteFactor
   }}>
     {props.children}
   </FactorContext.Provider>
