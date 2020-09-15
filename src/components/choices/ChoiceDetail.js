@@ -4,6 +4,7 @@ import { WeightList } from "../weights/WeightSelect"
 import { AddFactor } from "../factors/AddFactor"
 import { FactorContext } from "../factors/FactorProvider"
 import { Factor } from "../factors/Factor"
+import { AddOption } from "../options/AddOption"
 
 
 export const ChoiceDetail = (props) => {
@@ -62,12 +63,13 @@ export const ChoiceDetail = (props) => {
       }
     </div>
     <WeightList {...props} />
-    <AddFactor {...props} />
     {
       choiceFactors.map(cf => {
         return <Factor factor={cf} key={cf.id}/>
       })
     }
+    <AddFactor {...props} />
+    <AddOption {...props} />
     {/* TODO: display the factors, options and ratings */}
   </section>
   </>
