@@ -22,6 +22,7 @@ export const WeightProvider = (props) => {
     .then(getWeights)
   }
 
+
   return <WeightContext.Provider value={{
     weights, getWeights, addWeight
   }}>
