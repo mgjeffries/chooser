@@ -20,7 +20,7 @@ export const WeightList = (props) => {
     const weight = weights.find(w => w.id === choice.weightId) || {}
     setWeight(weight)
     setChoice(choice)
-  }, [choices])
+  }, [choices, weights])
 
   const weightRef = useRef(null)
 
