@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { ChoiceContext } from "./ChoiceProvider"
 import { WeightList } from "../weights/WeightSelect"
-import { WeightContext } from "../weights/WeightProvider"
 
 
 export const ChoiceDetail = (props) => {
