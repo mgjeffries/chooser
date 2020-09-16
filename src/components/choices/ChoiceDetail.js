@@ -6,6 +6,7 @@ import { FactorContext } from "../factors/FactorProvider"
 import { Factor } from "../factors/Factor"
 import { AddOption } from "../options/AddOption"
 import { OptionContext } from "../options/OptionProvider"
+import { Option } from "../options/Option"
 
 
 export const ChoiceDetail = (props) => {
@@ -76,7 +77,7 @@ export const ChoiceDetail = (props) => {
     }
     {
       choiceOptions.map(cO => {
-        return <Factor factor={cO} key={cO.id}/>
+        return <Option option={cO} key={cO.id}/>
       })
     }
     <AddFactor {...props} />
