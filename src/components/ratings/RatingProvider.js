@@ -22,6 +22,17 @@ export const RatingProvider = (props) => {
     .then(getRatings)
   }
 
+  const editRating = rating => {
+    return fetch(`http://localhost:8088/ratings/${rating.id}`,  {
+      method: "PUT",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(rating)
+  })
+    .then(getRatings)
+  }
+
   const deleteRating = rating => {
     return fetch(`http://localhost:8088/ratings/${rating.id}`, {
       method: "DELETE"
@@ -30,7 +41,7 @@ export const RatingProvider = (props) => {
   }
 
   return <RatingContext.Provider value={{
-    ratings, getRatings, addRating, deleteRating
+    ratings, getRatings, addRating, deleteRating, editRating
   }}>
     {props.children}
   </RatingContext.Provider>

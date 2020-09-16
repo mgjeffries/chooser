@@ -25,8 +25,8 @@ export const ApplicationViews = (props) => {
                   <Route path="/choices/:choiceId(\d+)" render={
                       props => <ChoiceDetail {...props} />
                   } />
+                  <ChooserModal />
                 </RatingProvider>
-                <ChooserModal />
               </ModalProvider>
             </OptionProvider>
           </FactorProvider>

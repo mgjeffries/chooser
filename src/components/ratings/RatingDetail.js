@@ -7,6 +7,7 @@ import Modal from "react-bootstrap/Modal"
 
 export const RatingDetail = ({rating, factor, option}) => {
   const { handleClose } = useContext(ModalContext)
+  const { addRating, editRating } = useContext(RatingContext)
 
   return (
     <>
@@ -24,7 +25,18 @@ export const RatingDetail = ({rating, factor, option}) => {
       <Button variant="secondary" onClick={handleClose}>
         Close
       </Button>
-      <Button variant="primary" onClick={handleClose}>
+      <Button variant="primary" 
+        onClick={ clickEvent => {
+          (rating.hasOwnProperty("id"))
+          ? editRating(rating)
+          : addRating({
+            factorId: factor.id,
+            optionId: option.id,
+            score: 2
+          })
+          handleClose()
+      }}
+      >
         Save Changes
       </Button>
     </Modal.Footer>
