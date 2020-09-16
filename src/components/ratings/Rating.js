@@ -9,7 +9,9 @@ export const Rating = ({ factor, option }) => {
   const { ratings, getRatings } = useContext(RatingContext)
   const [ rating, setRating ] = useState({})
   
-  useEffect(getRatings, [])
+  useEffect(() => {
+    getRatings() 
+  }, [])
 
   useEffect( () => {
     const rating = ratings.find( rating => {
@@ -21,7 +23,7 @@ export const Rating = ({ factor, option }) => {
       score: 0
     }
     setRating(rating)
-  }, [])
+  }, [ratings])
 
   return (
   <div className="rating">
