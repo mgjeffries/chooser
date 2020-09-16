@@ -6,7 +6,6 @@ import { FactorContext } from "../factors/FactorProvider"
 import { Factor } from "../factors/Factor"
 import { AddOption } from "../options/AddOption"
 import { OptionContext } from "../options/OptionProvider"
-import { ChooserModal } from "../modals/ChooserModal"
 import { Option } from "../options/Option"
 
 
