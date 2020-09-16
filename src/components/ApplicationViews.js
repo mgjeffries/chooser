@@ -18,12 +18,14 @@ export const ApplicationViews = (props) => {
           <FactorProvider>
             <OptionProvider>
               <ModalProvider>
-                <Route exact path="/">
-                    <ChoiceList />
-                </Route>
-                <Route path="/choices/:choiceId(\d+)" render={
-                    props => <ChoiceDetail {...props} />
-                } />
+                <RatingProvider>
+                  <Route exact path="/">
+                      <ChoiceList />
+                  </Route>
+                  <Route path="/choices/:choiceId(\d+)" render={
+                      props => <ChoiceDetail {...props} />
+                  } />
+                </RatingProvider>
                 <ChooserModal />
               </ModalProvider>
             </OptionProvider>
