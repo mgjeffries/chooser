@@ -18,9 +18,9 @@ export const Factor = ({factor}) => {
         setModalContent(
           <>
           <Modal.Header closeButton>
-            <Modal.Title>Option Details</Modal.Title>
+            <Modal.Title>Factor Details</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Yo</Modal.Body>
+          <Modal.Body>Generic Factor</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
