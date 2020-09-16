@@ -6,6 +6,7 @@ import { FactorContext } from "../factors/FactorProvider"
 import { Factor } from "../factors/Factor"
 import { AddOption } from "../options/AddOption"
 import { OptionContext } from "../options/OptionProvider"
+import { ChooserModal } from "../modals/ChooserModal"
 
 
 export const ChoiceDetail = (props) => {
@@ -43,7 +44,6 @@ export const ChoiceDetail = (props) => {
 
   return <> 
   <section className="choice">
-    
     <div className="choice__name">
       { 
       (isChoiceNameChanging)

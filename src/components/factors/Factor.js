@@ -1,34 +1,39 @@
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, useContext } from "react"
 import { FactorDetail } from "./FactorDetail"
-import Modal from "react-bootstrap/Modal"
 import Button from "react-bootstrap/Button"
+import { ModalContext } from "../modals/ModalProvider"
+import Modal from "react-bootstrap/Modal"
+
 
 export const Factor = ({factor}) => {
-  const [show, setShow] = useState(false);
+  const { handleShow, setModalContent, handleClose } = useContext(ModalContext)
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  
 
   return <div className="factor">
-
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Factor Details</Modal.Title>
-      </Modal.Header>
-      <Modal.Body><FactorDetail factor={factor} /></Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={handleClose}>
-          Save Changes
-        </Button>
-      </Modal.Footer>
-    </Modal>
     <div className="factor__name">{factor.name}</div>
     <div className="factor__multiplier">{factor.multiplier}</div>
     <Button 
-      onClick={handleShow} > 
+      onClick={ clickEvent => {
+        setModalContent(
+          <>
+          <Modal.Header closeButton>
+            <Modal.Title>Option Details</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Yo</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+          </>
+          )
+        handleShow()
+      }}
+       > 
       detail
     </Button>
   </div>
