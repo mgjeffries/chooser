@@ -8,6 +8,9 @@ export const Rating = ({ factor, option }) => {
   const { handleShow, setModalContent } = useContext(ModalContext)
   const { ratings, getRatings } = useContext(RatingContext)
   const [ rating, setRating ] = useState({})
+  const defaultRating = {
+    score: 0
+  }
   
   useEffect(() => {
     getRatings() 
@@ -19,9 +22,7 @@ export const Rating = ({ factor, option }) => {
         rating.factorId === factor.id 
         && rating.optionId === option.id
       )
-    }) || {
-      score: 0
-    }
+    }) || defaultRating
     setRating(rating)
   }, [ratings])
 
@@ -30,7 +31,7 @@ export const Rating = ({ factor, option }) => {
     <div>{rating.score}</div>
     <Button 
       onClick={ clickEvent => {
-        setModalContent(<RatingDetail rating={rating} />)
+        setModalContent(<RatingDetail rating={rating} factor={factor} option={option} />)
         handleShow()
       }}
        > 

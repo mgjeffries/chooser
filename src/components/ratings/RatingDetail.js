@@ -5,8 +5,7 @@ import { ModalContext } from "../modals/ModalProvider"
 import Modal from "react-bootstrap/Modal"
 
 
-export const RatingDetail = ({rating}) => {
-  const { deleteRating } = useContext(RatingContext)
+export const RatingDetail = ({rating, factor, option}) => {
   const { handleClose } = useContext(ModalContext)
 
   return (
@@ -16,8 +15,10 @@ export const RatingDetail = ({rating}) => {
     </Modal.Header>
     <Modal.Body>
       <div className="rating__detail">
-          Rating Details
+        <div>Rating for: {factor.name}, (factor) {option.name} (option)</div>
+        <div>Rating Score: {rating.score}</div>
       </div>
+
     </Modal.Body>
     <Modal.Footer>
       <Button variant="secondary" onClick={handleClose}>
