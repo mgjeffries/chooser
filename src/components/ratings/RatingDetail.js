@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useRef } from "react"
 import { RatingContext } from "./RatingProvider"
 import Button from "react-bootstrap/Button"
 import { ModalContext } from "../modals/ModalProvider"
@@ -8,6 +8,8 @@ import Modal from "react-bootstrap/Modal"
 export const RatingDetail = ({rating, factor, option}) => {
   const { handleClose } = useContext(ModalContext)
   const { addRating, editRating } = useContext(RatingContext)
+  
+  const scoreSlider = useRef(null)
 
   return (
     <>
@@ -18,6 +20,7 @@ export const RatingDetail = ({rating, factor, option}) => {
       <div className="rating__detail">
         <div>Rating for: {factor.name}, (factor) {option.name} (option)</div>
         <div>Rating Score: {rating.score}</div>
+        <input type="range" min="-10" max="10" defaultValue={rating.score} ref={scoreSlider}></input>
       </div>
 
     </Modal.Body>
@@ -32,7 +35,7 @@ export const RatingDetail = ({rating, factor, option}) => {
           : addRating({
             factorId: factor.id,
             optionId: option.id,
-            score: 2
+            score: parseInt(scoreSlider.current.value)
           })
           handleClose()
       }}
