@@ -7,7 +7,7 @@ import { Factor } from "../factors/Factor"
 import { AddOption } from "../options/AddOption"
 import { OptionContext } from "../options/OptionProvider"
 import { Option } from "../options/Option"
-
+import Table from "react-bootstrap/Table"
 
 export const ChoiceDetail = (props) => {
   const { choices, getChoices, editChoice } = useContext(ChoiceContext)
@@ -68,20 +68,52 @@ export const ChoiceDetail = (props) => {
       </>
       }
     </div>
+    
     <WeightList {...props} />
-    {
-      choiceFactors.map(cf => {
-        return <Factor factor={cf} key={cf.id}/>
-      })
-    }
+    
     {
       choiceOptions.map(cO => {
         return <Option option={cO} key={cO.id}/>
       })
     }
-    <AddFactor {...props} />
+    
+    <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>#</th>
+          {
+            choiceFactors.map(cf => {
+              return (
+              <th key={cf.id}>
+                <Factor factor={cf} />
+              </th>
+              )
+            })
+          }
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td colSpan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </Table>
     <AddOption {...props} />
-    {/* TODO: display the factors, options and ratings */}
+    <AddFactor {...props} />
   </section>
   </>
 }
