@@ -1,33 +1,22 @@
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, useContext } from "react"
 import { OptionDetail } from "./OptionDetail"
-import Modal from "react-bootstrap/Modal"
 import Button from "react-bootstrap/Button"
+import { ModalContext } from "../modals/ModalProvider"
 
 export const Option = ({option}) => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const { handleShow, setModalContent } = useContext(ModalContext)
+ 
 
   return <div className="option">
 
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Option Details</Modal.Title>
-      </Modal.Header>
-      <Modal.Body><OptionDetail option={option} /></Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={handleClose}>
-          Save Changes
-        </Button>
-      </Modal.Footer>
-    </Modal>
+    
     <div className="option__name">{option.name}</div>
     <Button 
-      onClick={handleShow} > 
+      onClick={ clickEvent => {
+        setModalContent(<OptionDetail option={option} />)
+        handleShow()
+      }}
+       > 
       detail
     </Button>
   </div>

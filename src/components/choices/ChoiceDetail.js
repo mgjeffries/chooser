@@ -44,7 +44,6 @@ export const ChoiceDetail = (props) => {
 
   return <> 
   <section className="choice">
-    
     <div className="choice__name">
       { 
       (isChoiceNameChanging)

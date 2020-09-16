@@ -7,6 +7,8 @@ import { ChoiceList } from "./choices/ChoiceList"
 import { ChoiceDetail } from "./choices/ChoiceDetail"
 import { FactorProvider } from "./factors/FactorProvider"
 import { OptionProvider } from "./options/OptionProvider"
+import { ModalProvider } from "./modals/ModalProvider"
+import { ChooserModal } from "./modals/ChooserModal"
 
 export const ApplicationViews = (props) => {
   return (
@@ -15,12 +17,15 @@ export const ApplicationViews = (props) => {
         <WeightProvider>
           <FactorProvider>
             <OptionProvider>
-              <Route exact path="/">
-                  <ChoiceList />
-              </Route>
-              <Route path="/choices/:choiceId(\d+)" render={
-                  props => <ChoiceDetail {...props} />
-              } />
+              <ModalProvider>
+                <Route exact path="/">
+                    <ChoiceList />
+                </Route>
+                <Route path="/choices/:choiceId(\d+)" render={
+                    props => <ChoiceDetail {...props} />
+                } />
+                <ChooserModal />
+              </ModalProvider>
             </OptionProvider>
           </FactorProvider>
         </WeightProvider>
