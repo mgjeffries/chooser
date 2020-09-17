@@ -8,6 +8,7 @@ import { AddOption } from "../options/AddOption"
 import { OptionContext } from "../options/OptionProvider"
 import { Option } from "../options/Option"
 import Table from "react-bootstrap/Table"
+import { Rating } from "../ratings/Rating"
 
 export const ChoiceDetail = (props) => {
   const { choices, getChoices, editChoice } = useContext(ChoiceContext)
@@ -96,9 +97,15 @@ export const ChoiceDetail = (props) => {
                 <td>
                   <Option option={cO} />
                 </td>
-                <td>sample rating 1</td>
-                <td>sample rating 2</td>
-                <td>sample rating 3</td>
+                {
+                  choiceFactors.map(cf => {
+                    return (
+                    <td>
+                      <Rating option={cO} factor={cf} />
+                    </td>
+                    )
+                  })
+                }
               </tr>
             )
           })
