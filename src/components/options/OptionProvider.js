@@ -22,6 +22,17 @@ export const OptionProvider = (props) => {
     .then(getOptions)
   }
 
+  const editOption = option => {
+    return fetch(`http://localhost:8088/options/${option.id}`,  {
+      method: "PUT",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(option)
+  })
+    .then(getOptions)
+  }
+
   const deleteOption = option => {
     return fetch(`http://localhost:8088/options/${option.id}`, {
       method: "DELETE"
@@ -30,7 +41,7 @@ export const OptionProvider = (props) => {
   }
 
   return <OptionContext.Provider value={{
-    options, getOptions, addOption, deleteOption
+    options, getOptions, addOption, deleteOption, editOption
   }}>
     {props.children}
   </OptionContext.Provider>
