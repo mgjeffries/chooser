@@ -22,6 +22,7 @@ export const OptionDetail = ({option}) => {
         <Button 
           onClick={evt => {
             deleteOption(option)
+            handleClose()
           }}
           className="btn">
           delete

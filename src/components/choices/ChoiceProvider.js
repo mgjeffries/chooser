@@ -33,8 +33,15 @@ export const ChoiceProvider = (props) => {
     .then(getChoices)
   }
 
+  const deleteChoice = choice => {
+    return fetch(`http://localhost:8088/choices/${choice.id}`,  {
+      method: "DELETE"
+  })
+    .then(getChoices)
+  }
+
   return <ChoiceContext.Provider value={{
-    choices, getChoices, addChoice, editChoice
+    choices, getChoices, addChoice, editChoice, deleteChoice
   }}>
     {props.children}
   </ChoiceContext.Provider>
