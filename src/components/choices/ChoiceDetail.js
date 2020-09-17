@@ -74,7 +74,7 @@ export const ChoiceDetail = (props) => {
     
     
     
-    <Table striped bordered hover>
+    <Table striped bordered >
       <thead>
         <tr>
           <th>#</th>
@@ -100,9 +100,8 @@ export const ChoiceDetail = (props) => {
                 {
                   choiceFactors.map(cf => {
                     return (
-                    <td>
+                    
                       <Rating option={cO} factor={cf} />
-                    </td>
                     )
                   })
                 }
