@@ -5,11 +5,20 @@ import { ModalContext } from "../modals/ModalProvider"
 import Modal from "react-bootstrap/Modal"
 
 
-export const RatingDetail = ({rating, factor, option}) => {
+export const RatingDetail = (props) => {
   const { handleClose } = useContext(ModalContext)
   const { addRating, editRating } = useContext(RatingContext)
+
+  const [ rating, setRating ] = useState(props.rating)
   
-  const scoreSlider = useRef(null)
+
+  const editMode = rating.hasOwnProperty("id")
+
+  const handleControlledInputChange = (event) => {
+    const newRating = Object.assign({}, rating)
+    newRating[event.target.name] = event.target.value
+    setRating(newRating)
+  }
 
   return (
     <>
@@ -18,9 +27,9 @@ export const RatingDetail = ({rating, factor, option}) => {
     </Modal.Header>
     <Modal.Body>
       <div className="rating__detail">
-        <div>Rating for: {factor.name}, (factor) {option.name} (option)</div>
+        <div>Rating for: {props.factor.name}, (factor) {props.option.name} (option)</div>
         <div>Rating Score: {rating.score}</div>
-        <input type="range" min="-10" max="10" defaultValue={rating.score} ref={scoreSlider}></input>
+        <input type="range" min="-10" max="10" value={rating.score} name="score" onChange={handleControlledInputChange}></input>
       </div>
 
     </Modal.Body>
@@ -30,12 +39,12 @@ export const RatingDetail = ({rating, factor, option}) => {
       </Button>
       <Button variant="primary" 
         onClick={ clickEvent => {
-          (rating.hasOwnProperty("id"))
+          (editMode)
           ? editRating(rating)
           : addRating({
-            factorId: factor.id,
-            optionId: option.id,
-            score: parseInt(scoreSlider.current.value)
+            factorId: props.factor.id,
+            optionId: props.option.id,
+            score: rating.score
           })
           handleClose()
       }}
