@@ -15,6 +15,19 @@ export const FactorDetail = (props) => {
     newFactor[event.target.name] = event.target.value
     setFactor(newFactor)
   }
+  const incrementMultiplier = (change) => {
+    const newFactor = Object.assign({}, factor)
+    newFactor.multiplier = factor.multiplier + change
+    setFactor(newFactor)
+  }
+
+  const increaseMultiplier = (event) => {
+    incrementMultiplier(1)
+  }
+
+  const decreaseMultiplier = (event) => {
+    incrementMultiplier(-1)
+  }
 
   return (
     <>
@@ -33,6 +46,18 @@ export const FactorDetail = (props) => {
       <div className="factor__multiplier">
         {factor.multiplier}
       </div>
+      <Button variant="outline-primary" 
+      onClick={ clickEvent => {
+        decreaseMultiplier()
+      }}>
+      -
+      </Button>
+      <Button variant="outline-primary" 
+      onClick={ clickEvent => {
+        increaseMultiplier()
+      }}>
+      +
+      </Button>
   </Modal.Body>
   <Modal.Footer>
     <Button variant="danger"
