@@ -75,14 +75,14 @@ export const ChoiceDetail = (props) => {
       }
     </div>
     
-    <WeightList {...props} />
+    
     
     
     
     <Table striped bordered >
       <thead>
         <tr>
-          <th>#</th>
+          <th><WeightList {...props} /></th>
           {
             choiceFactors.map(cf => {
               return (
