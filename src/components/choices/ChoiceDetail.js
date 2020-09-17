@@ -51,9 +51,9 @@ export const ChoiceDetail = (props) => {
           {
             choiceFactors.map(cf => {
               return (
-              <th key={cf.id}>
+
                 <Factor factor={cf} />
-              </th>
+
               )
             })
           }

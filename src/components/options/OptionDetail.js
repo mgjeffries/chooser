@@ -19,17 +19,18 @@ export const OptionDetail = ({option}) => {
         <div className="option__name">
           {option.name}
         </div>
-        <Button 
-          onClick={evt => {
-            deleteOption(option)
-            handleClose()
-          }}
-          className="btn">
-          delete
-        </Button>
+        
       </div>
     </Modal.Body>
     <Modal.Footer>
+      <Button variant="danger"
+        onClick={evt => {
+          deleteOption(option)
+          handleClose()
+        }}
+        className="btn">
+        delete
+      </Button>
       <Button variant="secondary" onClick={handleClose}>
         Close
       </Button>

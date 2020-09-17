@@ -22,6 +22,17 @@ export const FactorProvider = (props) => {
     .then(getFactors)
   }
 
+  const editFactor = factor => {
+    return fetch(`http://localhost:8088/factors/${factor.id}`,  {
+      method: "PUT",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(factor)
+  })
+    .then(getFactors)
+  }
+
   const deleteFactor = factor => {
     return fetch(`http://localhost:8088/factors/${factor.id}`, {
       method: "DELETE"
@@ -30,7 +41,7 @@ export const FactorProvider = (props) => {
   }
 
   return <FactorContext.Provider value={{
-    factors, getFactors, addFactor, deleteFactor
+    factors, getFactors, addFactor, deleteFactor, editFactor
   }}>
     {props.children}
   </FactorContext.Provider>
