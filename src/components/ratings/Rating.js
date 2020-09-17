@@ -27,14 +27,13 @@ export const Rating = ({ factor, option }) => {
   }, [ratings])
 
   return (
-  <div className="rating">
-    <Button 
+    <td 
       onClick={ clickEvent => {
         setModalContent(<RatingDetail rating={rating} factor={factor} option={option} />)
         handleShow()
       }}
        > 
       {rating.score}
-    </Button>
-  </div>)
+    </td>
+  )
 }
