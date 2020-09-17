@@ -44,7 +44,7 @@ export const RatingDetail = (props) => {
           : addRating({
             factorId: props.factor.id,
             optionId: props.option.id,
-            score: rating.score
+            score: parseInt(rating.score)
           })
           handleClose()
       }}
