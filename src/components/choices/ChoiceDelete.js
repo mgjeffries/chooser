@@ -15,7 +15,7 @@ export const ChoiceDelete = (props) => {
       <Modal.Title>Are you sure you want to delete this choice?</Modal.Title>
     </Modal.Header>
     <Modal.Footer>
-      <Button 
+      <Button variant="danger"
         onClick={evt => {
           deleteChoice(props.choice)
           props.history.push("/")

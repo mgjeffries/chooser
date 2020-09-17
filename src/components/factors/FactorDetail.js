@@ -22,17 +22,18 @@ export const FactorDetail = ({factor}) => {
         <div className="factor__multiplier">
           {factor.multiplier}
         </div>
-        <Button 
-          onClick={evt => {
-            deleteFactor(factor)
-            handleClose()
-          }}
-          className="btn">
-          delete
-        </Button>
+        
       </div>
   </Modal.Body>
   <Modal.Footer>
+    <Button variant="danger"
+      onClick={evt => {
+        deleteFactor(factor)
+        handleClose()
+      }}
+      className="btn">
+      delete
+    </Button>
     <Button variant="secondary" onClick={handleClose}>
       Close
     </Button>

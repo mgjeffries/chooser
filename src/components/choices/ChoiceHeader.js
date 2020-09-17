@@ -51,7 +51,7 @@ export const ChoiceHeader = (props) => {
         }
       </div>
 
-      <Button 
+      <Button variant="danger"
           onClick={evt => {
             setModalContent(<ChoiceDelete {...props} />)
             handleShow()
