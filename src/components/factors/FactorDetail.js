@@ -25,6 +25,7 @@ export const FactorDetail = ({factor}) => {
         <Button 
           onClick={evt => {
             deleteFactor(factor)
+            handleClose()
           }}
           className="btn">
           delete

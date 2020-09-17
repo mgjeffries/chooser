@@ -19,6 +19,7 @@ export const ChoiceDelete = (props) => {
         onClick={evt => {
           deleteChoice(props.choice)
           props.history.push("/")
+          handleClose()
         }}
         className="btn">
         delete
