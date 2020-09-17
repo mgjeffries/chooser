@@ -9,6 +9,7 @@ import { OptionContext } from "../options/OptionProvider"
 import { Option } from "../options/Option"
 import Table from "react-bootstrap/Table"
 import { Rating } from "../ratings/Rating"
+import Button from "react-bootstrap/esm/Button"
 
 export const ChoiceDetail = (props) => {
   const { choices, getChoices, editChoice } = useContext(ChoiceContext)
@@ -45,19 +46,23 @@ export const ChoiceDetail = (props) => {
 
   return <> 
   <section className="choice">
+    <Button 
+        onClick={evt => {
+          props.history.push("/")
+        }}>
+        Back
+    </Button>
     <div className="choice__name">
       { 
       (isChoiceNameChanging)
       ? <>
       <input type="text" defaultValue={choice.name} ref={choiceRef}></input>
-      <button type="submit"
+      <Button 
             onClick={evt => {
-                evt.preventDefault() // Prevent browser from submitting the form
                 changeName()
-            }}
-            className="btn btn-primary">
+            }}>
             Save
-        </button>
+        </Button>
       </>
       : <>
       <div onClick={evt => {
