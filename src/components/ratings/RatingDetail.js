@@ -27,7 +27,7 @@ export const RatingDetail = (props) => {
     </Modal.Header>
     <Modal.Body>
       <div className="rating__detail">
-        <div>Rating for: {props.factor.name}, (factor) {props.option.name} (option)</div>
+        <div>Rating for: {props.factor.name}, {props.option.name}</div>
         <div>Rating Score: {rating.score}</div>
         <input type="range" min="-10" max="10" value={rating.score} name="score" onChange={handleControlledInputChange}></input>
       </div>
