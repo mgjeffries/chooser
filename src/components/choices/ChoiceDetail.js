@@ -10,11 +10,14 @@ import { Option } from "../options/Option"
 import Table from "react-bootstrap/Table"
 import { Rating } from "../ratings/Rating"
 import Button from "react-bootstrap/esm/Button"
+import { ChoiceDelete } from "./ChoiceDelete"
+import { ModalContext } from "../modals/ModalProvider"
 
 export const ChoiceDetail = (props) => {
-  const { choices, getChoices, editChoice } = useContext(ChoiceContext)
+  const { choices, getChoices, editChoice, } = useContext(ChoiceContext)
   const { factors, getFactors } = useContext(FactorContext)
   const { options, getOptions } = useContext(OptionContext)
+  const { handleShow, setModalContent } = useContext(ModalContext)
   const [ choice, setChoice ] = useState({})
   const [ choiceFactors, setChoiceFactors ] = useState([])
   const [ choiceOptions, setChoiceOptions ] = useState([])
@@ -74,6 +77,13 @@ export const ChoiceDetail = (props) => {
       </>
       }
     </div>
+    <Button 
+        onClick={evt => {
+          setModalContent(<ChoiceDelete choice={choice} {...props} />)
+          handleShow()
+        }}>
+        Delete
+    </Button>
     
     
     
