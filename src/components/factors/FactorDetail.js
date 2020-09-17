@@ -44,7 +44,7 @@ export const FactorDetail = (props) => {
     </Modal.Header>
     <Modal.Body>
       <div className="factor__multiplier">
-        {factor.multiplier}
+        Multiplier: {factor.multiplier}
       </div>
       <Button variant="outline-primary" 
       onClick={ clickEvent => {
