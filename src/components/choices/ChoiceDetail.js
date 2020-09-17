@@ -64,9 +64,7 @@ export const ChoiceDetail = (props) => {
           choiceOptions.map(cO => {
             return (
               <tr key={cO.id}>
-                <td>
-                  <Option option={cO} />
-                </td>
+                <Option option={cO} />
                 {
                   choiceFactors.map(cf => {
                     return (

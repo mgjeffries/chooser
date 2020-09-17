@@ -7,17 +7,13 @@ export const Option = ({option}) => {
   const { handleShow, setModalContent } = useContext(ModalContext)
  
 
-  return <div className="option">
-
-    
+  return (
+    <td className="option"
+    onClick={ clickEvent => {
+      setModalContent(<OptionDetail option={option} />)
+      handleShow()
+    }}
+    >
     <div className="option__name">{option.name}</div>
-    <Button 
-      onClick={ clickEvent => {
-        setModalContent(<OptionDetail option={option} />)
-        handleShow()
-      }}
-       > 
-      detail
-    </Button>
-  </div>
+  </td>)
 }
