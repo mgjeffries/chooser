@@ -9,6 +9,7 @@ import { OptionProvider } from "./options/OptionProvider"
 import { ModalProvider } from "./modals/ModalProvider"
 import { ChooserModal } from "./modals/ChooserModal"
 import { RatingProvider } from "./ratings/RatingProvider"
+import { ScoreProvider } from "./scores/ScoreProvider"
 
 export const ApplicationViews = (props) => {
   return (
@@ -19,13 +20,17 @@ export const ApplicationViews = (props) => {
             <OptionProvider>
               <ModalProvider>
                 <RatingProvider>
-                  <Route exact path="/">
-                      <ChoiceList />
-                  </Route>
-                  <Route path="/choices/:choiceId(\d+)" render={
-                      props => <ChoiceDetail {...props} />
-                  } />
-                  <ChooserModal />
+                  <ScoreProvider>
+      
+                    <Route exact path="/">
+                        <ChoiceList />
+                    </Route>
+                    <Route path="/choices/:choiceId(\d+)" render={
+                        props => <ChoiceDetail {...props} />
+                    } />
+                    <ChooserModal />
+      
+                  </ScoreProvider>
                 </RatingProvider>
               </ModalProvider>
             </OptionProvider>

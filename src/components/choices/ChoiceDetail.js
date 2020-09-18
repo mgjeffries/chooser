@@ -11,6 +11,7 @@ import Table from "react-bootstrap/Table"
 import { Rating } from "../ratings/Rating"
 import { ChoiceHeader } from "./ChoiceHeader"
 
+
 export const ChoiceDetail = (props) => {
   const { choices, getChoices } = useContext(ChoiceContext)
   const { factors, getFactors } = useContext(FactorContext)
@@ -41,7 +42,6 @@ export const ChoiceDetail = (props) => {
   <section className="choice">
     
     <ChoiceHeader {...props} choice={choice} />
-    
     <Table striped bordered >
       <thead>
         <tr>
