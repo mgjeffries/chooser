@@ -10,7 +10,7 @@ import { Option } from "../options/Option"
 import Table from "react-bootstrap/Table"
 import { Rating } from "../ratings/Rating"
 import { ChoiceHeader } from "./ChoiceHeader"
-import { Scores } from "../scores/Scores"
+
 
 export const ChoiceDetail = (props) => {
   const { choices, getChoices } = useContext(ChoiceContext)
@@ -42,7 +42,6 @@ export const ChoiceDetail = (props) => {
   <section className="choice">
     
     <ChoiceHeader {...props} choice={choice} />
-    <Scores {...props} />
     <Table striped bordered >
       <thead>
         <tr>
