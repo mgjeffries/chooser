@@ -14,9 +14,9 @@ export const RatingDetail = (props) => {
 
   const editMode = rating.hasOwnProperty("id")
 
-  const handleControlledInputChange = (event) => {
+  const handleRatingChange = (event) => {
     const newRating = Object.assign({}, rating)
-    newRating[event.target.name] = event.target.value
+    newRating[event.target.name] = parseInt(event.target.value) // Ratings should be stored as ints
     setRating(newRating)
   }
 
@@ -29,7 +29,7 @@ export const RatingDetail = (props) => {
       <div className="rating__detail">
         <div>Rating for: {props.factor.name}, {props.option.name}</div>
         <div>Rating Score: {rating.score}</div>
-        <input type="range" min="-10" max="10" value={rating.score} name="score" onChange={handleControlledInputChange}></input>
+        <input type="range" min="-10" max="10" value={rating.score} name="score" onChange={handleRatingChange}></input>
       </div>
 
     </Modal.Body>
