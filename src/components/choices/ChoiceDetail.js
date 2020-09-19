@@ -46,7 +46,7 @@ export const ChoiceDetail = (props) => {
       <thead>
         <tr>
           <th>
-            <WeightList {...props} />
+            
           </th>
           {
             choiceFactors.map(cf => {
