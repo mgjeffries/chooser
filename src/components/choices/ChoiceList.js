@@ -7,7 +7,7 @@ import Card from "react-bootstrap/Card";
 
 const defaultWeightId = 1
 
-export const ChoiceList = () => {
+export const ChoiceList = (props) => {
   const { choices, getChoices, addChoice } = useContext(ChoiceContext)
 
   useEffect( () => {
@@ -35,6 +35,7 @@ export const ChoiceList = () => {
               userId: parseInt(localStorage.getItem("chooser_user")),
               weightId: defaultWeightId
             })
+            .then(responseChoice => props.history.push(`/choices/${responseChoice.id}`))
           }}
           className="btn">
           Add Choice

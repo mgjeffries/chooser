@@ -12,6 +12,7 @@ export const ChoiceProvider = (props) => {
   }
 
   const addChoice = choice => {
+    let addedchoice = {}
     return fetch("http://localhost:8088/choices",  {
       method: "POST",
       headers: {
@@ -19,7 +20,11 @@ export const ChoiceProvider = (props) => {
       },
       body: JSON.stringify(choice)
   })
+    .then(res => res.json())
+    .then(responseChoice => addedchoice = responseChoice)
     .then(getChoices)
+    .then( res => addedchoice)
+    
   }
 
   const editChoice = choice => {

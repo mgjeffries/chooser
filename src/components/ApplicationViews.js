@@ -23,8 +23,9 @@ export const ApplicationViews = (props) => {
                   <ScoreProvider>
       
                     <Route exact path="/">
-                        <ChoiceList />
+                        <ChoiceList {...props} />
                     </Route>
+                    
                     <Route path="/choices/:choiceId(\d+)" render={
                         props => <ChoiceDetail {...props} />
                     } />
