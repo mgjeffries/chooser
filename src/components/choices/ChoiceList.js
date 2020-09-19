@@ -35,7 +35,7 @@ export const ChoiceList = (props) => {
               userId: parseInt(localStorage.getItem("chooser_user")),
               weightId: defaultWeightId
             })
-            .then(responseChoice => props.history.push(`/choices/${responseChoice.id}`))
+            .then(responseChoice => props.history.push(`/choices/${responseChoice.id}/flow`))
           }}
           className="btn">
           Add Choice
