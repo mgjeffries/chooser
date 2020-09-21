@@ -7,7 +7,9 @@ export const ChoiceProvider = (props) => {
 
   const getChoices = () => {
     return fetch("http://localhost:8088/choices")
-      .then( res => res.json())  
+      .then( res => res.json()) 
+      // Filter choices to only expose choices for the current user
+      .then( choices => choices.filter(choice => choice.userId === parseInt(localStorage.getItem("chooser_user")))) 
       .then(setChoices)
   }
 
