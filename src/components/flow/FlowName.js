@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react"
-import { ChoiceContext } from "./ChoiceProvider"
+import { ChoiceContext } from "../choices/ChoiceProvider"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 
-export const ChoiceName = (props) => {
+export const FlowName = (props) => {
   const { choices, getChoices, editChoice } = useContext(ChoiceContext)
   const [ choice, setChoice ] = useState({})
 
@@ -37,7 +37,7 @@ export const ChoiceName = (props) => {
     <Button variant="primary" 
       onClick={ clickEvent => {
         editChoice(choice)
-        .then(responseChoice => props.history.push(`/choices/${choice.id}/choiceOptions`))
+        .then(responseChoice => props.history.push(`/choices/${choice.id}/options`))
     }}
     >
       next

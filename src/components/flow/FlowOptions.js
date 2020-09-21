@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from "react"
-import { ChoiceContext } from "./ChoiceProvider"
+import { ChoiceContext } from "../choices/ChoiceProvider"
 import { AddOption } from "../options/AddOption"
 import { OptionContext } from "../options/OptionProvider"
 import { Option } from "../options/Option"
@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button"
 
 
 
-export const ChoiceOptions = (props) => {
+export const FlowOptions = (props) => {
   const { choices, getChoices } = useContext(ChoiceContext)
   const { options, getOptions } = useContext(OptionContext)
   const [ choiceOptions, setChoiceOptions ] = useState([])
@@ -46,7 +46,7 @@ export const ChoiceOptions = (props) => {
     <AddOption {...props} />
     <Button variant="primary" 
       onClick={ clickEvent => {
-      props.history.push(`/choices/${props.match.params.choiceId}/choiceFactors`)
+      props.history.push(`/choices/${props.match.params.choiceId}/factors`)
     }}
     >
       next

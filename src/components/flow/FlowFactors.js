@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState, useRef } from "react"
-import { ChoiceContext } from "./ChoiceProvider"
+import { ChoiceContext } from "../choices/ChoiceProvider"
 import { AddFactor } from "../factors/AddFactor"
 import { FactorContext } from "../factors/FactorProvider"
 import { Factor } from "../factors/Factor"
 import Table from "react-bootstrap/Table"
 import Button from "react-bootstrap/Button"
 
-export const ChoiceFactors = (props) => {
+export const FlowFactors = (props) => {
   const { choices, getChoices } = useContext(ChoiceContext)
   const { factors, getFactors } = useContext(FactorContext)
   const [ choiceFactors, setChoiceFactors ] = useState([])
