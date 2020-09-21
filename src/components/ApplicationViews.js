@@ -11,6 +11,7 @@ import { ChooserModal } from "./modals/ChooserModal"
 import { RatingProvider } from "./ratings/RatingProvider"
 import { ScoreProvider } from "./scores/ScoreProvider"
 import { ChoiceName } from "./choices/ChoiceName"
+import { ChoiceOptions } from "./choices/ChoiceOptions"
 
 export const ApplicationViews = (props) => {
   return (
@@ -27,8 +28,11 @@ export const ApplicationViews = (props) => {
                         <ChoiceList {...props} />
                     </Route>
                     
-                    <Route exact path="/choices/:choiceId(\d+)/flow" render={
+                    <Route exact path="/choices/:choiceId(\d+)/name" render={
                         props => <ChoiceName {...props} />
+                    } />
+                    <Route exact path="/choices/:choiceId(\d+)/choiceOptions" render={
+                        props => <ChoiceOptions {...props} />
                     } />
 
                     <Route exact path="/choices/:choiceId(\d+)" render={
