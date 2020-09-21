@@ -27,6 +27,12 @@ export const ChoiceFactors = (props) => {
 
   return <> 
   <section className="choice__factors">
+    <div className="factor__prompt">What are the factors in this choice?</div>
+    <div className="factor__prompt">For example: If you are thinking about buying a car, some factors might be: </div>
+    <div className="factor__prompt">•Purchase cost</div>
+    <div className="factor__prompt">•Seating capacity</div>
+    <div className="factor__prompt">•Fuel efficiency</div>
+    <div className="factor__prompt">•Fun to drive</div>
     <Table striped bordered >
       <tbody>
         {

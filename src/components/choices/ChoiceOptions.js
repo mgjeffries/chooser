@@ -29,6 +29,7 @@ export const ChoiceOptions = (props) => {
 
   return <> 
   <section className="choice__options">
+    <div className="option__prompt">What are the options in this choice?</div>
     <Table striped bordered >
       <tbody>
         {
