@@ -12,6 +12,7 @@ import { RatingProvider } from "./ratings/RatingProvider"
 import { ScoreProvider } from "./scores/ScoreProvider"
 import { ChoiceName } from "./choices/ChoiceName"
 import { ChoiceOptions } from "./choices/ChoiceOptions"
+import { ChoiceFactors } from "./choices/ChoiceFactors"
 
 export const ApplicationViews = (props) => {
   return (
@@ -33,6 +34,9 @@ export const ApplicationViews = (props) => {
                     } />
                     <Route exact path="/choices/:choiceId(\d+)/choiceOptions" render={
                         props => <ChoiceOptions {...props} />
+                    } />
+                    <Route exact path="/choices/:choiceId(\d+)/choiceFactors" render={
+                        props => <ChoiceFactors {...props} />
                     } />
 
                     <Route exact path="/choices/:choiceId(\d+)" render={
