@@ -26,7 +26,7 @@ export const ApplicationViews = (props) => {
                         <ChoiceList {...props} />
                     </Route>
                     
-                    <Route path="/choices/:choiceId(\d+)/flow" render={
+                    <Route path="/choices/:choiceId(\d+)/:step(\d+)" render={
                         props => <div>What do you want to name this choice?</div>
                     } />
 
