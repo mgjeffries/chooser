@@ -1,48 +1,51 @@
-import React, { useContext, useEffect, useState } from "react"
-import { ChoiceContext } from "../choices/ChoiceProvider"
-import Form from "react-bootstrap/Form"
-import Button from "react-bootstrap/Button"
+import React, { useContext, useEffect, useState } from "react";
+import { ChoiceContext } from "../choices/ChoiceProvider";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export const FlowName = (props) => {
-  const { choices, getChoices, editChoice } = useContext(ChoiceContext)
-  const [ choice, setChoice ] = useState({})
-
-  useEffect( () => {
-    getChoices()
-  }, [])
+  const { choices, getChoices, editChoice } = useContext(ChoiceContext);
+  const [choice, setChoice] = useState({});
 
   useEffect(() => {
-    const choice = choices.find(c => c.id === parseInt(props.match.params.choiceId)) || {}
-    setChoice(choice)
-}, [ choices ])
+    getChoices();
+  }, []);
+
+  useEffect(() => {
+    const choice =
+      choices.find((c) => c.id === parseInt(props.match.params.choiceId)) || {};
+    setChoice(choice);
+  }, [choices]);
 
   const handleControlledInputChange = (event) => {
-    const newChoice = Object.assign({}, choice)
-    newChoice[event.target.name] = event.target.value
-    setChoice(newChoice)
-  }
+    const newChoice = Object.assign({}, choice);
+    newChoice[event.target.name] = event.target.value;
+    setChoice(newChoice);
+  };
 
   return (
     <>
-    <div className="choice__name">
-      What would you like to name this choice?
-    </div>
-    <Form>
-      <Form.Control type="text" 
-      defaultValue={choice.name} 
-      name="name" 
-      onChange={handleControlledInputChange}
-      />
-    </Form>
-    <Button variant="primary" 
-      onClick={ clickEvent => {
-        editChoice(choice)
-        .then(responseChoice => props.history.push(`/choices/${choice.id}/options`))
-    }}
-    >
-      next
-    </Button>
+      <div className="choice__name">
+        What would you like to name this choice?
+      </div>
+      <Form>
+        <Form.Control
+          type="text"
+          defaultValue={choice.name}
+          name="name"
+          onChange={handleControlledInputChange}
+        />
+      </Form>
+      <Button
+        variant="primary"
+        onClick={(clickEvent) => {
+          editChoice(choice).then((responseChoice) =>
+            props.history.push(`/choices/${choice.id}/options`)
+          );
+        }}
+      >
+        next
+      </Button>
     </>
-  )
-
-}
+  );
+};
