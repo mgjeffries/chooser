@@ -1,43 +1,22 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import { ChoiceContext } from "../choices/ChoiceProvider";
-import { AddOption } from "../options/AddOption";
 import { OptionContext } from "../options/OptionProvider";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 
 export const FlowOptions = (props) => {
-  const { choices, getChoices } = useContext(ChoiceContext);
-  const { options, getOptions, editOption, deleteOption } = useContext(
-    OptionContext
-  );
+  const { addOption, deleteOption } = useContext(OptionContext);
   const [choiceOptions, setChoiceOptions] = useState([]);
 
-  useEffect(() => {
-    getChoices();
-    getOptions();
-  }, []);
-
-  useEffect(() => {
-    const choice =
-      choices.find((c) => c.id === parseInt(props.match.params.choiceId)) || {};
-    const choiceOptions = options.filter((f) => f.choiceId === choice.id);
-    setChoiceOptions(choiceOptions);
-  }, [choices, options]);
-
-  const handleControlledInputChange = (event, optionId) => {
+  const handleControlledInputChange = (event, optionIndex) => {
     const newOptions = choiceOptions.slice();
-    newOptions.forEach((option) => {
-      if (option.id === optionId) {
-        option[event.target.name] = event.target.value;
-      }
-    });
+    newOptions[optionIndex][event.target.name] = event.target.value;
     setChoiceOptions(newOptions);
   };
 
   const saveChoiceOptions = () => {
     choiceOptions.forEach((option) => {
-      editOption(option);
+      addOption(option);
     });
   };
 
@@ -57,16 +36,16 @@ export const FlowOptions = (props) => {
         <div>•Rideshare</div>
         <div>•Keep your current car</div>
         <Form>
-          {choiceOptions.map((option) => {
+          {choiceOptions.map((option, optionIndex) => {
             return (
-              <Form.Row className="align-items-center" key={option.id}>
+              <Form.Row className="align-items-center" key={optionIndex}>
                 <Col xs="auto">
                   <Form.Control
                     type="text"
                     placeholder="Name this option"
                     name="name"
                     onChange={(changeEvent) => {
-                      handleControlledInputChange(changeEvent, option.id);
+                      handleControlledInputChange(changeEvent, optionIndex);
                     }}
                   />
                 </Col>
@@ -84,7 +63,19 @@ export const FlowOptions = (props) => {
             );
           })}
         </Form>
-        <AddOption {...props} />
+        <Button
+          onClick={(evt) => {
+            const newChoiceOptions = choiceOptions.slice();
+            newChoiceOptions.push({
+              name: "Untitled Option",
+              choiceId: parseInt(props.match.params.choiceId),
+            });
+            setChoiceOptions(newChoiceOptions);
+          }}
+          className="btn"
+        >
+          Add Option
+        </Button>
         <Button
           variant="primary"
           onClick={(clickEvent) => {
