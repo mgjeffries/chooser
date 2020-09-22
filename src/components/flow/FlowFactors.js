@@ -8,37 +8,18 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 
 export const FlowFactors = (props) => {
-  const { choices, getChoices } = useContext(ChoiceContext);
-  const { factors, getFactors, deleteFactor, editFactor } = useContext(
-    FactorContext
-  );
+  const { deleteFactor, addFactor } = useContext(FactorContext);
   const [choiceFactors, setChoiceFactors] = useState([]);
 
-  useEffect(() => {
-    getChoices();
-    getFactors();
-  }, []);
-
-  useEffect(() => {
-    const choice =
-      choices.find((c) => c.id === parseInt(props.match.params.choiceId)) || {};
-    const choiceFactors = factors.filter((f) => f.choiceId === choice.id);
-    setChoiceFactors(choiceFactors);
-  }, [choices, factors]);
-
-  const handleControlledInputChange = (event, factorId) => {
+  const handleControlledInputChange = (event, factorIndex) => {
     const newFactors = choiceFactors.slice();
-    newFactors.forEach((factor) => {
-      if (factor.id === factorId) {
-        factor[event.target.name] = event.target.value;
-      }
-    });
+    newFactors[factorIndex][event.target.name] = event.target.value;
     setChoiceFactors(newFactors);
   };
 
   const saveChoiceFactors = () => {
     choiceFactors.forEach((factor) => {
-      editFactor(factor);
+      addFactor(factor);
     });
   };
 
@@ -57,16 +38,16 @@ export const FlowFactors = (props) => {
         <div className="factor__prompt">•Fuel efficiency</div>
         <div className="factor__prompt">•Fun to drive</div>
         <Form>
-          {choiceFactors.map((factor) => {
+          {choiceFactors.map((factor, factorIndex) => {
             return (
-              <Form.Row className="align-items-center" key={factor.id}>
+              <Form.Row className="align-items-center" key={factorIndex}>
                 <Col xs="auto">
                   <Form.Control
                     type="text"
                     placeholder="Name this factor"
                     name="name"
                     onChange={(changeEvent) => {
-                      handleControlledInputChange(changeEvent, factor.id);
+                      handleControlledInputChange(changeEvent, factorIndex);
                     }}
                   />
                 </Col>
@@ -84,7 +65,20 @@ export const FlowFactors = (props) => {
             );
           })}
         </Form>
-        <AddFactor {...props} />
+        <Button
+          onClick={(evt) => {
+            const choiceFactorsCopy = choiceFactors.slice();
+            choiceFactorsCopy.push({
+              name: "Untitled Factor",
+              choiceId: parseInt(props.match.params.choiceId),
+              multiplier: 1,
+            });
+            setChoiceFactors(choiceFactorsCopy);
+          }}
+          className="btn"
+        >
+          Add Factor
+        </Button>
         <Button
           variant="primary"
           onClick={(clickEvent) => {
