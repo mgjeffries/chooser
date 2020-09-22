@@ -29,17 +29,15 @@ export const FlowFactors = (props) => {
   return (
     <>
       <section className="choice__factors">
-        <div className="factor__prompt">
-          What are the factors in this choice?
-        </div>
-        <div className="factor__prompt">
+        <h2 className="factor__prompt">What are the factors in this choice?</h2>
+        <div>
           For example: If you are thinking about buying a car, some factors
-          might be:{" "}
+          might be:
         </div>
-        <div className="factor__prompt">•Purchase cost</div>
-        <div className="factor__prompt">•Seating capacity</div>
-        <div className="factor__prompt">•Fuel efficiency</div>
-        <div className="factor__prompt">•Fun to drive</div>
+        <div>•Purchase cost</div>
+        <div>•Seating capacity</div>
+        <div>•Fuel efficiency</div>
+        <div>•Fun to drive</div>
         <Form>
           {choiceFactors.map((factor, factorIndex) => {
             return (
