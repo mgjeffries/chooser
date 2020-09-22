@@ -1,49 +1,53 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 
-export const FactorContext = React.createContext()
+export const FactorContext = React.createContext();
 
 export const FactorProvider = (props) => {
-  const [ factors, setFactors ] = useState([])
+  const [factors, setFactors] = useState([]);
 
   const getFactors = () => {
     return fetch("http://localhost:8088/factors")
-      .then( res => res.json())  
-      .then(setFactors)
-  }
+      .then((res) => res.json())
+      .then(setFactors);
+  };
 
-  const addFactor = factor => {
-    return fetch("http://localhost:8088/factors",  {
+  const addFactor = (factor) => {
+    return fetch("http://localhost:8088/factors", {
       method: "POST",
       headers: {
-          "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(factor)
-  })
-    .then(getFactors)
-  }
+      body: JSON.stringify(factor),
+    }).then(getFactors);
+  };
 
-  const editFactor = factor => {
-    return fetch(`http://localhost:8088/factors/${factor.id}`,  {
+  const editFactor = (factor) => {
+    return fetch(`http://localhost:8088/factors/${factor.id}`, {
       method: "PUT",
       headers: {
-          "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(factor)
-  })
-    .then(getFactors)
-  }
+      body: JSON.stringify(factor),
+    }).then(getFactors);
+  };
 
-  const deleteFactor = factor => {
+  const deleteFactor = (factor) => {
     return fetch(`http://localhost:8088/factors/${factor.id}`, {
-      method: "DELETE"
-    })
-    .then(getFactors)
-  }
+      method: "DELETE",
+    }).then(getFactors);
+  };
 
-  return <FactorContext.Provider value={{
-    factors, getFactors, addFactor, deleteFactor, editFactor
-  }}>
-    {props.children}
-  </FactorContext.Provider>
-
-}
+  return (
+    <FactorContext.Provider
+      value={{
+        factors,
+        getFactors,
+        addFactor,
+        deleteFactor,
+        editFactor,
+      }}
+    >
+      {props.children}
+    </FactorContext.Provider>
+  );
+};
