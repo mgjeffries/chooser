@@ -26,11 +26,11 @@ export const FlowName = (props) => {
   return (
     <>
       <h1 className="choice__name">What would you like to name this choice?</h1>
-      <div className="factor__prompt">Examples:</div>
-      <div className="factor__prompt">•New Car?</div>
-      <div className="factor__prompt">•Where to work?</div>
-      <div className="factor__prompt">•Which Cell Carrier</div>
-      <div className="factor__prompt">•Where to go for Vacation?</div>
+      <div>Examples:</div>
+      <div>•New Car?</div>
+      <div>•Where to work?</div>
+      <div>•Which Cell Carrier</div>
+      <div>•Where to go for Vacation?</div>
       <Form>
         <Form.Control
           type="text"
