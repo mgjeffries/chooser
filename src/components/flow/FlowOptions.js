@@ -2,13 +2,15 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import { ChoiceContext } from "../choices/ChoiceProvider";
 import { AddOption } from "../options/AddOption";
 import { OptionContext } from "../options/OptionProvider";
-import { Option } from "../options/Option";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
 
 export const FlowOptions = (props) => {
   const { choices, getChoices } = useContext(ChoiceContext);
-  const { options, getOptions, editOption } = useContext(OptionContext);
+  const { options, getOptions, editOption, deleteOption } = useContext(
+    OptionContext
+  );
   const [choiceOptions, setChoiceOptions] = useState([]);
 
   useEffect(() => {
@@ -48,15 +50,29 @@ export const FlowOptions = (props) => {
         <Form striped bordered>
           {choiceOptions.map((option) => {
             return (
-              <Form.Control
-                key={option.id}
-                type="text"
-                defaultValue={option.name}
-                name="name"
-                onChange={(changeEvent) => {
-                  handleControlledInputChange(changeEvent, option.id);
-                }}
-              />
+              <Form.Row className="align-items-center">
+                <Col xs="auto">
+                  <Form.Control
+                    key={option.id}
+                    type="text"
+                    defaultValue={option.name}
+                    name="name"
+                    onChange={(changeEvent) => {
+                      handleControlledInputChange(changeEvent, option.id);
+                    }}
+                  />
+                </Col>
+                <Col xs="auto">
+                  <Button
+                    variant="outline-danger"
+                    onClick={(clickEvent) => {
+                      deleteOption(option);
+                    }}
+                  >
+                    delete
+                  </Button>
+                </Col>
+              </Form.Row>
             );
           })}
         </Form>
