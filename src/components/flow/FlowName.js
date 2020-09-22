@@ -25,13 +25,16 @@ export const FlowName = (props) => {
 
   return (
     <>
-      <div className="choice__name">
-        What would you like to name this choice?
-      </div>
+      <h1 className="choice__name">What would you like to name this choice?</h1>
+      <div>Examples:</div>
+      <div>•New Car?</div>
+      <div>•Where to work?</div>
+      <div>•Which Cell Carrier</div>
+      <div>•Where to go for Vacation?</div>
       <Form>
         <Form.Control
           type="text"
-          defaultValue={choice.name}
+          placeholder={choice.name}
           name="name"
           onChange={handleControlledInputChange}
         />

@@ -1,49 +1,86 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import { ChoiceContext } from "../choices/ChoiceProvider";
-import { AddOption } from "../options/AddOption";
 import { OptionContext } from "../options/OptionProvider";
-import { Option } from "../options/Option";
-import Table from "react-bootstrap/Table";
+import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
 
 export const FlowOptions = (props) => {
-  const { choices, getChoices } = useContext(ChoiceContext);
-  const { options, getOptions } = useContext(OptionContext);
+  const { addOption, deleteOption } = useContext(OptionContext);
   const [choiceOptions, setChoiceOptions] = useState([]);
+  const defaultOptionName = "Untitled Option";
 
-  useEffect(() => {
-    getChoices();
-    getOptions();
-  }, []);
+  const handleControlledInputChange = (event, optionIndex) => {
+    const newOptions = choiceOptions.slice();
+    newOptions[optionIndex][event.target.name] = event.target.value;
+    setChoiceOptions(newOptions);
+  };
 
-  useEffect(() => {
-    const choice =
-      choices.find((c) => c.id === parseInt(props.match.params.choiceId)) || {};
-    const choiceOptions = options.filter((f) => f.choiceId === choice.id);
-    setChoiceOptions(choiceOptions);
-  }, [choices, options]);
+  const saveChoiceOptions = () => {
+    choiceOptions.forEach((option) => {
+      if (option.name !== defaultOptionName) addOption(option);
+    });
+  };
 
   return (
     <>
       <section className="choice__options">
-        <div className="option__prompt">
-          What are the options in this choice?
+        <h1 className="option__prompt">
+          What are the options for this choice?
+        </h1>
+        <div>
+          For example, If you are thinking about what to drive, some options
+          might be:
         </div>
-        <Table striped bordered>
-          <tbody>
-            {choiceOptions.map((cO) => {
-              return (
-                <tr key={cO.id}>
-                  <Option option={cO} />
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-        <AddOption {...props} />
+        <div>•Buy a new car</div>
+        <div>•Lease a new car</div>
+        <div>•Buy a used car</div>
+        <div>•Rideshare</div>
+        <div>•Keep your current car</div>
+        <Form>
+          {choiceOptions.map((option, optionIndex) => {
+            return (
+              <Form.Row className="align-items-center" key={optionIndex}>
+                <Col xs="auto">
+                  <Form.Control
+                    type="text"
+                    placeholder="Name this option"
+                    name="name"
+                    onChange={(changeEvent) => {
+                      handleControlledInputChange(changeEvent, optionIndex);
+                    }}
+                  />
+                </Col>
+                <Col xs="auto">
+                  <Button
+                    variant="outline-danger"
+                    onClick={(clickEvent) => {
+                      deleteOption(option);
+                    }}
+                  >
+                    delete
+                  </Button>
+                </Col>
+              </Form.Row>
+            );
+          })}
+        </Form>
+        <Button
+          onClick={(evt) => {
+            const newChoiceOptions = choiceOptions.slice();
+            newChoiceOptions.push({
+              name: defaultOptionName,
+              choiceId: parseInt(props.match.params.choiceId),
+            });
+            setChoiceOptions(newChoiceOptions);
+          }}
+          className="btn"
+        >
+          Add Option
+        </Button>
         <Button
           variant="primary"
           onClick={(clickEvent) => {
+            saveChoiceOptions();
             props.history.push(
               `/choices/${props.match.params.choiceId}/factors`
             );
