@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 export const FlowOptions = (props) => {
   const { addOption, deleteOption } = useContext(OptionContext);
   const [choiceOptions, setChoiceOptions] = useState([]);
+  const defaultOptionName = "Untitled Option";
 
   const handleControlledInputChange = (event, optionIndex) => {
     const newOptions = choiceOptions.slice();
@@ -16,7 +17,7 @@ export const FlowOptions = (props) => {
 
   const saveChoiceOptions = () => {
     choiceOptions.forEach((option) => {
-      addOption(option);
+      if (option.name !== defaultOptionName) addOption(option);
     });
   };
 
@@ -67,7 +68,7 @@ export const FlowOptions = (props) => {
           onClick={(evt) => {
             const newChoiceOptions = choiceOptions.slice();
             newChoiceOptions.push({
-              name: "Untitled Option",
+              name: defaultOptionName,
               choiceId: parseInt(props.match.params.choiceId),
             });
             setChoiceOptions(newChoiceOptions);

@@ -10,6 +10,7 @@ import Col from "react-bootstrap/Col";
 export const FlowFactors = (props) => {
   const { deleteFactor, addFactor } = useContext(FactorContext);
   const [choiceFactors, setChoiceFactors] = useState([]);
+  const defaultFactorName = "Untitled Factor";
 
   const handleControlledInputChange = (event, factorIndex) => {
     const newFactors = choiceFactors.slice();
@@ -19,7 +20,9 @@ export const FlowFactors = (props) => {
 
   const saveChoiceFactors = () => {
     choiceFactors.forEach((factor) => {
-      addFactor(factor);
+      if (factor.name !== defaultFactorName) {
+        addFactor(factor);
+      }
     });
   };
 
@@ -69,7 +72,7 @@ export const FlowFactors = (props) => {
           onClick={(evt) => {
             const choiceFactorsCopy = choiceFactors.slice();
             choiceFactorsCopy.push({
-              name: "Untitled Factor",
+              name: defaultFactorName,
               choiceId: parseInt(props.match.params.choiceId),
               multiplier: 1,
             });
