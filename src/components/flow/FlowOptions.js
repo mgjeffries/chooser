@@ -59,12 +59,11 @@ export const FlowOptions = (props) => {
         <Form striped bordered>
           {choiceOptions.map((option) => {
             return (
-              <Form.Row className="align-items-center">
+              <Form.Row className="align-items-center" key={option.id}>
                 <Col xs="auto">
                   <Form.Control
-                    key={option.id}
                     type="text"
-                    defaultValue={option.name}
+                    placeholder="Name this option"
                     name="name"
                     onChange={(changeEvent) => {
                       handleControlledInputChange(changeEvent, option.id);
