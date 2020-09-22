@@ -56,7 +56,7 @@ export const FlowOptions = (props) => {
         <div>•Buy a used car</div>
         <div>•Rideshare</div>
         <div>•Keep your current car</div>
-        <Form striped bordered>
+        <Form>
           {choiceOptions.map((option) => {
             return (
               <Form.Row className="align-items-center" key={option.id}>
