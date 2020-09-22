@@ -3,12 +3,15 @@ import { ChoiceContext } from "../choices/ChoiceProvider";
 import { AddFactor } from "../factors/AddFactor";
 import { FactorContext } from "../factors/FactorProvider";
 import { Factor } from "../factors/Factor";
-import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
 
 export const FlowFactors = (props) => {
   const { choices, getChoices } = useContext(ChoiceContext);
-  const { factors, getFactors } = useContext(FactorContext);
+  const { factors, getFactors, deleteFactor, editFactor } = useContext(
+    FactorContext
+  );
   const [choiceFactors, setChoiceFactors] = useState([]);
 
   useEffect(() => {
@@ -22,6 +25,22 @@ export const FlowFactors = (props) => {
     const choiceFactors = factors.filter((f) => f.choiceId === choice.id);
     setChoiceFactors(choiceFactors);
   }, [choices, factors]);
+
+  const handleControlledInputChange = (event, factorId) => {
+    const newFactors = choiceFactors.slice();
+    newFactors.forEach((factor) => {
+      if (factor.id === factorId) {
+        factor[event.target.name] = event.target.value;
+      }
+    });
+    setChoiceFactors(newFactors);
+  };
+
+  const saveChoiceFactors = () => {
+    choiceFactors.forEach((factor) => {
+      editFactor(factor);
+    });
+  };
 
   return (
     <>
@@ -37,17 +56,39 @@ export const FlowFactors = (props) => {
         <div className="factor__prompt">•Seating capacity</div>
         <div className="factor__prompt">•Fuel efficiency</div>
         <div className="factor__prompt">•Fun to drive</div>
-        <Table striped bordered>
-          <tbody>
-            {choiceFactors.map((cf) => {
-              return <Factor factor={cf} />;
-            })}
-          </tbody>
-        </Table>
+        <Form>
+          {choiceFactors.map((factor) => {
+            return (
+              <Form.Row className="align-items-center" key={factor.id}>
+                <Col xs="auto">
+                  <Form.Control
+                    type="text"
+                    placeholder="Name this factor"
+                    name="name"
+                    onChange={(changeEvent) => {
+                      handleControlledInputChange(changeEvent, factor.id);
+                    }}
+                  />
+                </Col>
+                <Col xs="auto">
+                  <Button
+                    variant="outline-danger"
+                    onClick={(clickEvent) => {
+                      deleteFactor(factor);
+                    }}
+                  >
+                    delete
+                  </Button>
+                </Col>
+              </Form.Row>
+            );
+          })}
+        </Form>
         <AddFactor {...props} />
         <Button
           variant="primary"
           onClick={(clickEvent) => {
+            saveChoiceFactors();
             props.history.push(`/choices/${props.match.params.choiceId}`);
           }}
         >
