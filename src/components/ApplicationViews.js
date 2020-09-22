@@ -13,6 +13,7 @@ import { ScoreProvider } from "./scores/ScoreProvider";
 import { FlowName } from "./flow/FlowName";
 import { FlowOptions } from "./flow/FlowOptions";
 import { FlowFactors } from "./flow/FlowFactors";
+import { ChoiceRouter } from "./choices/ChoiceRouter";
 
 export const ApplicationViews = (props) => {
   return (
@@ -29,26 +30,10 @@ export const ApplicationViews = (props) => {
                     </Route>
 
                     <Route
-                      exact
-                      path="/choices/:choiceId(\d+)/name"
-                      render={(props) => <FlowName {...props} />}
-                    />
-                    <Route
-                      exact
-                      path="/choices/:choiceId(\d+)/options"
-                      render={(props) => <FlowOptions {...props} />}
-                    />
-                    <Route
-                      exact
-                      path="/choices/:choiceId(\d+)/factors"
-                      render={(props) => <FlowFactors {...props} />}
+                      path="/choices"
+                      render={(props) => <ChoiceRouter {...props} />}
                     />
 
-                    <Route
-                      exact
-                      path="/choices/:choiceId(\d+)"
-                      render={(props) => <ChoiceDetail {...props} />}
-                    />
                     <ChooserModal />
                   </ScoreProvider>
                 </RatingProvider>
