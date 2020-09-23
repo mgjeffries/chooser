@@ -29,6 +29,9 @@ export const Rating = ({ factor, option, choice }) => {
     const style = {
       backgroundColor: "lightgreen",
       wordBreak: "break-word",
+      padding: "5px",
+      borderRadius: "4px",
+      minHeight: "34px",
     };
     if (ratingScore < 0) {
       style.backgroundColor = "indianred";
@@ -38,7 +41,6 @@ export const Rating = ({ factor, option, choice }) => {
 
   return (
     <td
-      style={ratingStyle(rating.score)}
       onClick={(clickEvent) => {
         setModalContent(
           <RatingDetail rating={rating} factor={factor} option={option} />
@@ -46,7 +48,9 @@ export const Rating = ({ factor, option, choice }) => {
         handleShow();
       }}
     >
-      {IntToWeight(rating.score * factor.multiplier, choice)}
+      <div style={ratingStyle(rating.score)}>
+        {IntToWeight(rating.score * factor.multiplier, choice)}
+      </div>
     </td>
   );
 };
