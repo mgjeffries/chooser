@@ -41,7 +41,9 @@ export const ChoiceDetail = (props) => {
   const getChoiceWeightsUsed = () => {
     let weightsUsed = 0;
     choiceOptions.forEach((option) => {
-      weightsUsed += scores.find((score) => score.optionId === option.id).score;
+      weightsUsed += Math.abs(
+        scores.find((score) => score.optionId === option.id).score
+      );
     });
     return weightsUsed;
   };
