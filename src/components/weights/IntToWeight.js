@@ -15,7 +15,7 @@ export const IntToWeight = (int, choice) => {
   }, [weights]);
 
   if (typeof weight.emoji === "string") {
-    return weight.emoji.repeat(int);
+    return weight.emoji.repeat(Math.abs(int));
   }
   return "";
 };

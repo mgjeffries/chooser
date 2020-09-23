@@ -65,7 +65,7 @@ export const ChoiceDetail = (props) => {
                 <tr key={cO.id}>
                   <Option option={cO} />
                   {choiceFactors.map((cf) => {
-                    return <Rating option={cO} factor={cf} />;
+                    return <Rating option={cO} factor={cf} choice={choice} />;
                   })}
                 </tr>
               );
