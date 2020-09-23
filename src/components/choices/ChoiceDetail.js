@@ -38,14 +38,13 @@ export const ChoiceDetail = (props) => {
     setChoiceOptions(choiceOptions);
   }, [choices, factors, options]);
 
-  const getChoiceWeightsUsed = () => {
-    let weightsUsed = 0;
+  const calculateChoiceWeightsUsed = () => {
+    let choiceWeightsUsed = 0;
     choiceOptions.forEach((option) => {
-      weightsUsed += Math.abs(
-        scores.find((score) => score.optionId === option.id).score
-      );
+      choiceWeightsUsed += scores.find((score) => score.optionId === option.id)
+        .weightsUsed;
     });
-    return weightsUsed;
+    return choiceWeightsUsed;
   };
 
   return (
@@ -76,7 +75,7 @@ export const ChoiceDetail = (props) => {
         </Table>
         <WeightWallet
           choice={choice}
-          weightsUsed={getChoiceWeightsUsed()}
+          weightsUsed={calculateChoiceWeightsUsed()}
           {...props}
         />
         <AddOption {...props} />
