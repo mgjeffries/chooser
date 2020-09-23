@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-const defaultWeightId = 1;
+const defaultWeightId = 9;
 
 export const ChoiceList = (props) => {
   const { choices, getChoices, addChoice } = useContext(ChoiceContext);
