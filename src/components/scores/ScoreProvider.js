@@ -33,13 +33,20 @@ export const ScoreProvider = (props) => {
     options.forEach((option, optionIndex) => {
       scoresCopy.push({
         score: 0,
+        weightsUsed: 0,
         optionId: option.id,
       }); //Initialize score for option
       factors.forEach((factor) => {
         const rating = ratings.find((rating) => {
           return rating.factorId === factor.id && rating.optionId === option.id;
-        }) || { score: 0 }; // Return 0 if no score found
+        }) || {
+          score: 0,
+          weightsUsed: 0,
+        }; // Return 0 if no score found
+
         scoresCopy[optionIndex].score += rating.score * factor.multiplier;
+        scoresCopy[optionIndex].weightsUsed +=
+          Math.abs(rating.score) * factor.multiplier;
       });
     });
     setScores(scoresCopy);
@@ -49,6 +56,7 @@ export const ScoreProvider = (props) => {
     <ScoreContext.Provider
       value={{
         useScoreByOptionId,
+        scores,
       }}
     >
       {props.children}

@@ -10,11 +10,14 @@ import { Option } from "../options/Option";
 import Table from "react-bootstrap/Table";
 import { Rating } from "../ratings/Rating";
 import { ChoiceHeader } from "./ChoiceHeader";
+import { ScoreContext } from "../scores/ScoreProvider";
+import { WeightWallet } from "../weights/WeightWallet";
 
 export const ChoiceDetail = (props) => {
   const { choices, getChoices } = useContext(ChoiceContext);
   const { factors, getFactors } = useContext(FactorContext);
   const { options, getOptions } = useContext(OptionContext);
+  const { scores } = useContext(ScoreContext);
   const [choice, setChoice] = useState({});
   const [choiceFactors, setChoiceFactors] = useState([]);
   const [choiceOptions, setChoiceOptions] = useState([]);
@@ -26,14 +29,24 @@ export const ChoiceDetail = (props) => {
   }, []);
 
   useEffect(() => {
-    const choice =
+    const choiceCopy =
       choices.find((c) => c.id === parseInt(props.match.params.choiceId)) || {};
-    const choiceFactors = factors.filter((f) => f.choiceId === choice.id);
-    const choiceOptions = options.filter((f) => f.choiceId === choice.id);
-    setChoice(choice);
+    const choiceFactors = factors.filter((f) => f.choiceId === choiceCopy.id);
+    const choiceOptions = options.filter((f) => f.choiceId === choiceCopy.id);
+    setChoice(choiceCopy);
     setChoiceFactors(choiceFactors);
     setChoiceOptions(choiceOptions);
+    console.log(choiceCopy);
   }, [choices, factors, options]);
+
+  const calculateChoiceWeightsUsed = () => {
+    let choiceWeightsUsed = 0;
+    choiceOptions.forEach((option) => {
+      choiceWeightsUsed += scores.find((score) => score.optionId === option.id)
+        .weightsUsed;
+    });
+    return choiceWeightsUsed;
+  };
 
   return (
     <>
@@ -44,7 +57,7 @@ export const ChoiceDetail = (props) => {
             <tr>
               <th></th>
               {choiceFactors.map((cf) => {
-                return <Factor factor={cf} />;
+                return <Factor factor={cf} key={cf.id} />;
               })}
             </tr>
           </thead>
@@ -54,13 +67,25 @@ export const ChoiceDetail = (props) => {
                 <tr key={cO.id}>
                   <Option option={cO} />
                   {choiceFactors.map((cf) => {
-                    return <Rating option={cO} factor={cf} />;
+                    return (
+                      <Rating
+                        option={cO}
+                        factor={cf}
+                        choice={choice}
+                        key={cf.id}
+                      />
+                    );
                   })}
                 </tr>
               );
             })}
           </tbody>
         </Table>
+        <WeightWallet
+          choice={choice}
+          weightsUsed={calculateChoiceWeightsUsed()}
+          {...props}
+        />
         <AddOption {...props} />
         <AddFactor {...props} />
       </section>
