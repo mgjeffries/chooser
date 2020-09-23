@@ -7,7 +7,7 @@ import "./weightWallet.css";
 export const WeightWallet = (props) => {
   const { weights, getWeights } = useContext(WeightContext);
   const [weight, setWeight] = useState({});
-  const walletsize = 100;
+  const walletsize = 50;
 
   useEffect(() => {
     getWeights();
