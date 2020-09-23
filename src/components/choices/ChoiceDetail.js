@@ -11,6 +11,7 @@ import Table from "react-bootstrap/Table";
 import { Rating } from "../ratings/Rating";
 import { ChoiceHeader } from "./ChoiceHeader";
 import { ScoreContext } from "../scores/ScoreProvider";
+import { WeightWallet } from "../weights/WeightWallet";
 
 export const ChoiceDetail = (props) => {
   const { choices, getChoices } = useContext(ChoiceContext);
@@ -71,8 +72,11 @@ export const ChoiceDetail = (props) => {
             })}
           </tbody>
         </Table>
-        <div>Total points used: </div>
-        <div>{getChoiceWeightsUsed()}</div>
+        <WeightWallet
+          choice={choice}
+          weightsUsed={getChoiceWeightsUsed()}
+          {...props}
+        />
         <AddOption {...props} />
         <AddFactor {...props} />
       </section>
