@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
+import { IntToWeight } from "./IntToWeight";
 import { WeightContext } from "./WeightProvider";
 
 export const WeightWallet = (props) => {
   const { weights, getWeights } = useContext(WeightContext);
   const [weight, setWeight] = useState({});
-  const walletsize = 500;
+  const walletsize = 100;
 
   useEffect(() => {
     getWeights();
@@ -18,9 +19,9 @@ export const WeightWallet = (props) => {
   return (
     <div className="weight__wallet">
       <div>Weights Used</div>
-      <div>{props.weightsUsed}</div>
+      <div>{IntToWeight(props.weightsUsed, props.choice)}</div>
       <div>Weights Remaining</div>
-      <div>{walletsize - props.weightsUsed}</div>
+      <div>{IntToWeight(walletsize - props.weightsUsed, props.choice)}</div>
     </div>
   );
 };
