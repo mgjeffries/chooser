@@ -28,6 +28,7 @@ export const Rating = ({ factor, option, choice }) => {
   const ratingStyle = (ratingScore) => {
     const style = {
       backgroundColor: "lightgreen",
+      wordBreak: "break-word",
     };
     if (ratingScore < 0) {
       style.backgroundColor = "indianred";
@@ -45,7 +46,7 @@ export const Rating = ({ factor, option, choice }) => {
         handleShow();
       }}
     >
-      {IntToWeight(rating.score, choice)}
+      {IntToWeight(rating.score * factor.multiplier, choice)}
     </td>
   );
 };
