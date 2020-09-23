@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { IntToWeight } from "./IntToWeight";
 import { WeightContext } from "./WeightProvider";
 import { WeightList } from "./WeightSelect";
+import "./weightWallet.css";
 
 export const WeightWallet = (props) => {
   const { weights, getWeights } = useContext(WeightContext);
