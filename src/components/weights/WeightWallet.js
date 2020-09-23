@@ -18,10 +18,13 @@ export const WeightWallet = (props) => {
 
   return (
     <div className="weight__wallet">
-      <div>Weights Used</div>
-      <div>{IntToWeight(props.weightsUsed, props.choice)}</div>
-      <div>Weights Remaining</div>
-      <div>{IntToWeight(walletsize - props.weightsUsed, props.choice)}</div>
+      <div>Weight Wallet</div>
+      <span style={{ backgroundColor: "lightgrey" }}>
+        {IntToWeight(props.weightsUsed, props.choice)}
+      </span>
+      <span style={{ color: "darkslategrey" }}>
+        {IntToWeight(walletsize - props.weightsUsed, props.choice)}
+      </span>
     </div>
   );
 };
