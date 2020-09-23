@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { IntToWeight } from "./IntToWeight";
 import { WeightContext } from "./WeightProvider";
+import { WeightList } from "./WeightSelect";
 
 export const WeightWallet = (props) => {
   const { weights, getWeights } = useContext(WeightContext);
@@ -27,6 +28,7 @@ export const WeightWallet = (props) => {
   return (
     <div className="weight__wallet">
       <div>Weight Wallet</div>
+      <WeightList {...props} />
       <span style={{ backgroundColor: "lightgrey" }}>
         {IntToWeight(props.weightsUsed, props.choice)}
       </span>

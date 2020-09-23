@@ -81,7 +81,6 @@ export const ChoiceDetail = (props) => {
             })}
           </tbody>
         </Table>
-        <WeightList {...props} />
         <WeightWallet
           choice={choice}
           weightsUsed={calculateChoiceWeightsUsed()}
