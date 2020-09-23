@@ -49,6 +49,7 @@ export const ScoreProvider = (props) => {
     <ScoreContext.Provider
       value={{
         useScoreByOptionId,
+        scores,
       }}
     >
       {props.children}

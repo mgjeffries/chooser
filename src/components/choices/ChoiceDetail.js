@@ -10,11 +10,13 @@ import { Option } from "../options/Option";
 import Table from "react-bootstrap/Table";
 import { Rating } from "../ratings/Rating";
 import { ChoiceHeader } from "./ChoiceHeader";
+import { ScoreContext } from "../scores/ScoreProvider";
 
 export const ChoiceDetail = (props) => {
   const { choices, getChoices } = useContext(ChoiceContext);
   const { factors, getFactors } = useContext(FactorContext);
   const { options, getOptions } = useContext(OptionContext);
+  const { scores } = useContext(ScoreContext);
   const [choice, setChoice] = useState({});
   const [choiceFactors, setChoiceFactors] = useState([]);
   const [choiceOptions, setChoiceOptions] = useState([]);
@@ -34,6 +36,14 @@ export const ChoiceDetail = (props) => {
     setChoiceFactors(choiceFactors);
     setChoiceOptions(choiceOptions);
   }, [choices, factors, options]);
+
+  const getChoiceWeightsUsed = () => {
+    let weightsUsed = 0;
+    choiceOptions.forEach((option) => {
+      weightsUsed += scores.find((score) => score.optionId === option.id).score;
+    });
+    return weightsUsed;
+  };
 
   return (
     <>
@@ -61,6 +71,8 @@ export const ChoiceDetail = (props) => {
             })}
           </tbody>
         </Table>
+        <div>Total points used: </div>
+        <div>{getChoiceWeightsUsed()}</div>
         <AddOption {...props} />
         <AddFactor {...props} />
       </section>
