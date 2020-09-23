@@ -29,13 +29,14 @@ export const ChoiceDetail = (props) => {
   }, []);
 
   useEffect(() => {
-    const choice =
+    const choiceCopy =
       choices.find((c) => c.id === parseInt(props.match.params.choiceId)) || {};
-    const choiceFactors = factors.filter((f) => f.choiceId === choice.id);
-    const choiceOptions = options.filter((f) => f.choiceId === choice.id);
-    setChoice(choice);
+    const choiceFactors = factors.filter((f) => f.choiceId === choiceCopy.id);
+    const choiceOptions = options.filter((f) => f.choiceId === choiceCopy.id);
+    setChoice(choiceCopy);
     setChoiceFactors(choiceFactors);
     setChoiceOptions(choiceOptions);
+    console.log(choiceCopy);
   }, [choices, factors, options]);
 
   const calculateChoiceWeightsUsed = () => {
@@ -56,7 +57,7 @@ export const ChoiceDetail = (props) => {
             <tr>
               <th></th>
               {choiceFactors.map((cf) => {
-                return <Factor factor={cf} />;
+                return <Factor factor={cf} key={cf.id} />;
               })}
             </tr>
           </thead>
@@ -66,13 +67,21 @@ export const ChoiceDetail = (props) => {
                 <tr key={cO.id}>
                   <Option option={cO} />
                   {choiceFactors.map((cf) => {
-                    return <Rating option={cO} factor={cf} choice={choice} />;
+                    return (
+                      <Rating
+                        option={cO}
+                        factor={cf}
+                        choice={choice}
+                        key={cf.id}
+                      />
+                    );
                   })}
                 </tr>
               );
             })}
           </tbody>
         </Table>
+        <WeightList {...props} />
         <WeightWallet
           choice={choice}
           weightsUsed={calculateChoiceWeightsUsed()}
