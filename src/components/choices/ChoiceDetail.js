@@ -36,7 +36,6 @@ export const ChoiceDetail = (props) => {
     setChoice(choiceCopy);
     setChoiceFactors(choiceFactors);
     setChoiceOptions(choiceOptions);
-    console.log(choiceCopy);
   }, [choices, factors, options]);
 
   const calculateChoiceWeightsUsed = () => {

@@ -3,6 +3,7 @@ import { RatingContext } from "./RatingProvider";
 import Button from "react-bootstrap/Button";
 import { ModalContext } from "../modals/ModalProvider";
 import Modal from "react-bootstrap/Modal";
+import RangeSlider from "react-bootstrap-range-slider";
 
 export const RatingDetail = (props) => {
   const { handleClose } = useContext(ModalContext);
@@ -17,6 +18,7 @@ export const RatingDetail = (props) => {
     newRating[event.target.name] = parseInt(event.target.value); // Ratings should be stored as ints
     setRating(newRating);
   };
+  const [value, setValue] = useState(0);
 
   return (
     <>
@@ -29,14 +31,17 @@ export const RatingDetail = (props) => {
             Rating for: {props.factor.name}, {props.option.name}
           </div>
           <div>Rating Score: {rating.score}</div>
-          <input
-            type="range"
-            min="-10"
-            max="10"
+          <RangeSlider
+            value={value}
+            onChange={(changeEvent) => setValue(changeEvent.target.value)}
+          />
+          {/* <RangeSlider
+            min={-10}
+            max={10}
             value={rating.score}
             name="score"
             onChange={handleRatingChange}
-          ></input>
+          ></RangeSlider> */}
         </div>
       </Modal.Body>
       <Modal.Footer>

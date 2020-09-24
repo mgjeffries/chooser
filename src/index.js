@@ -1,10 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
-import { Chooser } from "./components/Chooser"
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Chooser } from "./components/Chooser";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,7 +13,7 @@ ReactDOM.render(
       <Chooser />
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
