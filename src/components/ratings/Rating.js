@@ -43,7 +43,12 @@ export const Rating = ({ factor, option, choice }) => {
     <td
       onClick={(clickEvent) => {
         setModalContent(
-          <RatingDetail rating={rating} factor={factor} option={option} />
+          <RatingDetail
+            rating={rating}
+            factor={factor}
+            option={option}
+            choice={choice}
+          />
         );
         handleShow();
       }}
