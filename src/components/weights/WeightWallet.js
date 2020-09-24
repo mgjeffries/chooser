@@ -29,8 +29,16 @@ export const WeightWallet = (props) => {
   return (
     <div className="weight__wallet">
       <div>Weight Wallet</div>
+      <div> Weights used: {props.weightsUsed}</div>
       <WeightList {...props} />
-      <span style={{ backgroundColor: "lightgrey" }}>
+      <span
+        style={{
+          backgroundColor: "lightgrey",
+          filter: "grayscale(100%)",
+          padding: "3px 0px",
+          borderRadius: "4px",
+        }}
+      >
         {IntToWeight(props.weightsUsed, props.choice)}
       </span>
       <span style={{ color: "darkslategrey" }}>
