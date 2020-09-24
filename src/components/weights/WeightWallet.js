@@ -35,6 +35,8 @@ export const WeightWallet = (props) => {
         style={{
           backgroundColor: "lightgrey",
           filter: "grayscale(100%)",
+          padding: "3px 0px",
+          borderRadius: "4px",
         }}
       >
         {IntToWeight(props.weightsUsed, props.choice)}
