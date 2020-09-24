@@ -3,6 +3,7 @@ import Button from "react-bootstrap/esm/Button";
 import { ModalContext } from "../modals/ModalProvider";
 import { ChoiceDelete } from "./ChoiceDelete";
 import { ChoiceContext } from "./ChoiceProvider";
+import "./choice.css";
 
 export const ChoiceHeader = (props) => {
   const { editChoice } = useContext(ChoiceContext);
