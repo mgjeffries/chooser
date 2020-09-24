@@ -29,6 +29,7 @@ export const WeightWallet = (props) => {
   return (
     <div className="weight__wallet">
       <div>Weight Wallet</div>
+      <div> Weights used: {props.weightsUsed}</div>
       <WeightList {...props} />
       <span
         style={{
