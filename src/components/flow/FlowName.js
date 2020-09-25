@@ -28,11 +28,7 @@ export const FlowName = (props) => {
     <>
       <Container>
         <h2 className="choice__name">What's on your mind? (Step 1/3)</h2>
-        <div>Examples:</div>
-        <div>•New Car?</div>
-        <div>•Where to work?</div>
-        <div>•Which Cell Carrier to use?</div>
-        <div>•Where to go for Vacation?</div>
+
         <Form>
           <Form.Label>Name of Choice</Form.Label>
           <Form.Control
@@ -42,6 +38,11 @@ export const FlowName = (props) => {
             onChange={handleControlledInputChange}
           />
         </Form>
+        <div>Examples:</div>
+        <div>•New Car?</div>
+        <div>•Where to work?</div>
+        <div>•Which Cell Carrier to use?</div>
+        <div>•Where to go for Vacation?</div>
         <Button
           variant="primary"
           onClick={(clickEvent) => {
