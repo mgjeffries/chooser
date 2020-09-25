@@ -6,9 +6,9 @@
 }
 
 .rating__positive {
-  background-color: rgba(50, 220, 50, 0.1);
+  background-color: rgba(50, 220, 50, 0.2);
 }
 
 .rating__negative {
-  background-color: rgba(220, 50, 50, 0.1);
+  background-color: rgba(220, 50, 50, 0.2);
 }
