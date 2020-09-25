@@ -33,7 +33,7 @@ export const WeightWallet = (props) => {
       <WeightList {...props} />
       <span
         style={{
-          backgroundColor: "lightgrey",
+          backgroundColor: "rgba(122, 122, 122, 0.2)",
           filter: "grayscale(100%)",
           padding: "3px 0px",
           borderRadius: "4px",
