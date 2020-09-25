@@ -35,11 +35,11 @@ export const RatingDetail = (props) => {
             className={`rating 
             ${rating.score >= 0 ? "rating__positive" : "rating__negative"}`}
           >
-            {IntToWeight(rating.score, props.choice)}
+            {IntToWeight(rating.score * props.factor.multiplier, props.choice)}
           </span>
           <RangeSlider
-            min={-10}
-            max={10}
+            min={-10 * props.factor.multiplier}
+            max={10 * props.factor.multiplier}
             value={rating.score}
             onChange={handleRatingChange}
           ></RangeSlider>
