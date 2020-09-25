@@ -66,7 +66,7 @@ export const WeightList = (props) => {
           </div>
         ) : (
           <Button
-            variant="outline-info"
+            variant="outline-secondary"
             onClick={(evt) => {
               setIsWeightChanging(true);
             }}

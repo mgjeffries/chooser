@@ -28,14 +28,14 @@ export const Rating = ({ factor, option, choice }) => {
 
   const ratingStyle = (ratingScore) => {
     const style = {
-      backgroundColor: "lightgreen",
+      backgroundColor: "#93c54b",
       wordBreak: "break-word",
       padding: "5px",
       borderRadius: "4px",
       minHeight: "34px",
     };
     if (ratingScore < 0) {
-      style.backgroundColor = "indianred";
+      style.backgroundColor = "#d9534f";
     }
     return style;
   };

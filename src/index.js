@@ -4,7 +4,7 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import { Chooser } from "./components/Chooser";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./bootstrap.css";
 import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
 
 ReactDOM.render(
