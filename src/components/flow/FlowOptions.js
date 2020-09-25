@@ -5,9 +5,9 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 
 export const FlowOptions = (props) => {
-  const { addOption, deleteOption } = useContext(OptionContext);
+  const { addOption } = useContext(OptionContext);
   const [choiceOptions, setChoiceOptions] = useState([]);
-  const defaultOptionName = "Untitled Option";
+  const defaultOptionName = "";
 
   const handleControlledInputChange = (event, optionIndex) => {
     const newOptions = choiceOptions.slice();
@@ -19,6 +19,11 @@ export const FlowOptions = (props) => {
     choiceOptions.forEach((option) => {
       if (option.name !== defaultOptionName) addOption(option);
     });
+  };
+  const deleteChoiceOption = (optionIndex) => {
+    const newChoiceOptions = choiceOptions.slice();
+    newChoiceOptions.shift(optionIndex);
+    setChoiceOptions(newChoiceOptions);
   };
 
   return (
@@ -45,6 +50,7 @@ export const FlowOptions = (props) => {
                     type="text"
                     placeholder="Name this option"
                     name="name"
+                    value={option.name}
                     onChange={(changeEvent) => {
                       handleControlledInputChange(changeEvent, optionIndex);
                     }}
@@ -54,7 +60,7 @@ export const FlowOptions = (props) => {
                   <Button
                     variant="outline-danger"
                     onClick={(clickEvent) => {
-                      deleteOption(option);
+                      deleteChoiceOption(optionIndex);
                     }}
                   >
                     delete

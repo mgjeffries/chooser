@@ -1,16 +1,13 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import { ChoiceContext } from "../choices/ChoiceProvider";
-import { AddFactor } from "../factors/AddFactor";
 import { FactorContext } from "../factors/FactorProvider";
-import { Factor } from "../factors/Factor";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 
 export const FlowFactors = (props) => {
-  const { deleteFactor, addFactor } = useContext(FactorContext);
+  const { addFactor } = useContext(FactorContext);
   const [choiceFactors, setChoiceFactors] = useState([]);
-  const defaultFactorName = "Untitled Factor";
+  const defaultFactorName = "";
 
   const handleControlledInputChange = (event, factorIndex) => {
     const newFactors = choiceFactors.slice();
@@ -24,6 +21,12 @@ export const FlowFactors = (props) => {
         addFactor(factor);
       }
     });
+  };
+
+  const deleteChoiceFactor = (factorIndex) => {
+    const choiceFactorsCopy = choiceFactors.slice();
+    choiceFactorsCopy.shift(factorIndex);
+    setChoiceFactors(choiceFactorsCopy);
   };
 
   return (
@@ -47,6 +50,7 @@ export const FlowFactors = (props) => {
                     type="text"
                     placeholder="Name this factor"
                     name="name"
+                    value={factor.name}
                     onChange={(changeEvent) => {
                       handleControlledInputChange(changeEvent, factorIndex);
                     }}
@@ -56,7 +60,7 @@ export const FlowFactors = (props) => {
                   <Button
                     variant="outline-danger"
                     onClick={(clickEvent) => {
-                      deleteFactor(factor);
+                      deleteChoiceFactor(factorIndex);
                     }}
                   >
                     delete
