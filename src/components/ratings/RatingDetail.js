@@ -15,10 +15,9 @@ export const RatingDetail = (props) => {
 
   const handleRatingChange = (event) => {
     const newRating = Object.assign({}, rating);
-    newRating[event.target.name] = parseInt(event.target.value); // Ratings should be stored as ints
+    newRating.score = parseInt(event.target.value); // Ratings should be stored as ints
     setRating(newRating);
   };
-  const [value, setValue] = useState(0);
 
   return (
     <>
@@ -32,16 +31,11 @@ export const RatingDetail = (props) => {
           </div>
           <div>Rating Score: {rating.score}</div>
           <RangeSlider
-            value={value}
-            onChange={(changeEvent) => setValue(changeEvent.target.value)}
-          />
-          {/* <RangeSlider
             min={-10}
             max={10}
             value={rating.score}
-            name="score"
             onChange={handleRatingChange}
-          ></RangeSlider> */}
+          ></RangeSlider>
         </div>
       </Modal.Body>
       <Modal.Footer>
