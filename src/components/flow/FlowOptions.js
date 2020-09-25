@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 
 export const FlowOptions = (props) => {
-  const { addOption, deleteOption } = useContext(OptionContext);
+  const { addOption } = useContext(OptionContext);
   const [choiceOptions, setChoiceOptions] = useState([]);
   const defaultOptionName = "";
 
