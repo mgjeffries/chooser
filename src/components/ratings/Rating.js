@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { ModalContext } from "../modals/ModalProvider";
 import { RatingContext } from "./RatingProvider";
 import { IntToWeight } from "../weights/IntToWeight";
+import "./rating.css";
 
 export const Rating = ({ factor, option, choice }) => {
   const { handleShow, setModalContent } = useContext(ModalContext);
@@ -53,7 +54,10 @@ export const Rating = ({ factor, option, choice }) => {
         handleShow();
       }}
     >
-      <div style={ratingStyle(rating.score)}>
+      <div
+        className={`rating 
+      ${rating.score >= 0 ? "rating__positive" : "rating__negative"}`}
+      >
         {IntToWeight(rating.score * factor.multiplier, choice)}
       </div>
     </td>

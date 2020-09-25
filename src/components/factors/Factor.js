@@ -16,9 +16,7 @@ export const Factor = ({ factor }) => {
       }}
     >
       <div className="factor__name">{factor.name}</div>
-      <Button variant="outline-secondary" disabled>
-        X {factor.multiplier}
-      </Button>{" "}
+      <div>X {factor.multiplier}</div>
     </th>
   );
 };

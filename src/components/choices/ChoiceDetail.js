@@ -36,7 +36,6 @@ export const ChoiceDetail = (props) => {
     setChoice(choiceCopy);
     setChoiceFactors(choiceFactors);
     setChoiceOptions(choiceOptions);
-    console.log(choiceCopy);
   }, [choices, factors, options]);
 
   const calculateChoiceWeightsUsed = () => {
@@ -81,13 +80,15 @@ export const ChoiceDetail = (props) => {
             })}
           </tbody>
         </Table>
+        <div className="choice__tableControls">
+          <AddOption {...props} />
+          <AddFactor {...props} />
+        </div>
         <WeightWallet
           choice={choice}
           weightsUsed={calculateChoiceWeightsUsed()}
           {...props}
         />
-        <AddOption {...props} />
-        <AddFactor {...props} />
       </section>
     </>
   );
