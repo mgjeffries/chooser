@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { ModalContext } from "../modals/ModalProvider";
 import Modal from "react-bootstrap/Modal";
 import RangeSlider from "react-bootstrap-range-slider";
+import { IntToWeight } from "../weights/IntToWeight";
 
 export const RatingDetail = (props) => {
   const { handleClose } = useContext(ModalContext);
@@ -29,7 +30,13 @@ export const RatingDetail = (props) => {
           <div>
             Rating for: {props.factor.name}, {props.option.name}
           </div>
-          <div>Rating Score: {rating.score}</div>
+          <span>Rating Score: </span>
+          <span
+            className={`rating 
+            ${rating.score >= 0 ? "rating__positive" : "rating__negative"}`}
+          >
+            {IntToWeight(rating.score, props.choice)}
+          </span>
           <RangeSlider
             min={-10}
             max={10}
