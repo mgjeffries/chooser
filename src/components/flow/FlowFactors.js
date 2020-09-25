@@ -37,14 +37,7 @@ export const FlowFactors = (props) => {
           <h2 className="factor__prompt">
             What are the factors in this choice? (Step 3/3)
           </h2>
-          <div>
-            For example: If you are thinking about buying a car, some factors
-            might be:
-          </div>
-          <div>•Purchase cost</div>
-          <div>•Seating capacity</div>
-          <div>•Fuel efficiency</div>
-          <div>•Fun to drive</div>
+
           <Form>
             {choiceFactors.map((factor, factorIndex) => {
               return (
@@ -88,6 +81,14 @@ export const FlowFactors = (props) => {
           >
             Add Factor
           </Button>
+          <div>
+            For example: If you are thinking about buying a car, some factors
+            might be:
+          </div>
+          <div>•Purchase cost</div>
+          <div>•Seating capacity</div>
+          <div>•Fuel efficiency</div>
+          <div>•Fun to drive</div>
           <Button
             variant="primary"
             onClick={(clickEvent) => {

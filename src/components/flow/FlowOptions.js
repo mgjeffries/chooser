@@ -34,15 +34,7 @@ export const FlowOptions = (props) => {
           <h2 className="option__prompt">
             What are the options for this choice? (Step 2/3)
           </h2>
-          <div>
-            For example, If you are thinking about what to drive, some options
-            might be:
-          </div>
-          <div>•Buy a new car</div>
-          <div>•Lease a new car</div>
-          <div>•Buy a used car</div>
-          <div>•Rideshare</div>
-          <div>•Keep your current car</div>
+
           <Form>
             {choiceOptions.map((option, optionIndex) => {
               return (
@@ -85,6 +77,15 @@ export const FlowOptions = (props) => {
           >
             Add Option
           </Button>
+          <div>
+            For example, If you are thinking about what to drive, some options
+            might be:
+          </div>
+          <div>•Buy a new car</div>
+          <div>•Lease a new car</div>
+          <div>•Buy a used car</div>
+          <div>•Rideshare</div>
+          <div>•Keep your current car</div>
           <Button
             variant="primary"
             onClick={(clickEvent) => {
