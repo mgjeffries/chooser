@@ -1,6 +1,6 @@
 import React, { useRef, useState, useContext } from "react";
 import { FactorDetail } from "./FactorDetail";
-import Button from "react-bootstrap/Button";
+import Badge from "react-bootstrap/Badge";
 import { ModalContext } from "../modals/ModalProvider";
 
 export const Factor = ({ factor }) => {
@@ -16,7 +16,7 @@ export const Factor = ({ factor }) => {
       }}
     >
       <div className="factor__name">{factor.name}</div>
-      <div>X {factor.multiplier}</div>
+      <Badge variant="secondary">X {factor.multiplier}</Badge>
     </th>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useContext } from "react";
 import { OptionDetail } from "./OptionDetail";
-import Button from "react-bootstrap/Button";
+import Badge from "react-bootstrap/Badge";
 import { ModalContext } from "../modals/ModalProvider";
 import { ScoreContext } from "../scores/ScoreProvider";
 
@@ -17,9 +17,7 @@ export const Option = ({ option }) => {
       }}
     >
       <div className="option__name">{option.name}</div>
-      <div className="option__score">
-        Score: {useScoreByOptionId(option.id)}
-      </div>
+      <Badge variant="secondary">Score: {useScoreByOptionId(option.id)}</Badge>
     </td>
   );
 };
