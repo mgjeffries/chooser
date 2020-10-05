@@ -16,7 +16,7 @@ export const Factor = ({ factor }) => {
       }}
     >
       <div className="factor__name">{factor.name}</div>
-      <Badge variant="secondary">X {factor.multiplier}</Badge>
+      <Badge variant="primary">X {factor.multiplier}</Badge>
     </th>
   );
 };

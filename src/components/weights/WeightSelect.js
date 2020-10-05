@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import { WeightContext } from "./WeightProvider";
 import { ChoiceContext } from "../choices/ChoiceProvider";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
-export const WeightList = (props) => {
+export const WeightSelect = (props) => {
   const { weights, getWeights } = useContext(WeightContext);
   const { choices, getChoices, editChoice } = useContext(ChoiceContext);
-  const [isWeightChanging, setIsWeightChanging] = useState(false);
   const [weight, setWeight] = useState({});
   const [choice, setChoice] = useState({});
 
@@ -30,51 +30,39 @@ export const WeightList = (props) => {
     const newChoice = choice;
     newChoice.weightId = weightId;
     editChoice(newChoice);
-    setIsWeightChanging(false);
   };
 
   return (
     <>
       <section className="weight__list">
-        {isWeightChanging ? (
-          <div>
-            <label htmlFor="weight">Assign a weight</label>
-            <select
-              defaultValue={weight.id}
-              name="weight"
-              ref={weightRef}
-              className="weight__select"
-            >
-              {weights.map((w) => {
-                return (
-                  <option key={w.id} value={w.id}>
-                    {w.emoji + " " + w.name}
-                  </option>
-                );
-              })}
-            </select>
-            <Button
-              type="submit"
-              onClick={(evt) => {
-                evt.preventDefault(); // Prevent browser from submitting the form
-                changeWeight();
-              }}
-              className="btn btn-primary"
-            >
-              Save
-            </Button>
-          </div>
-        ) : (
-          <Button
-            variant="outline-secondary"
-            onClick={(evt) => {
-              setIsWeightChanging(true);
-            }}
-            className="btn"
+        <div>
+          <label htmlFor="weight">Pick a Token:</label>
+          <Form.Control
+            as="select"
+            defaultValue={weight.id}
+            name="weight"
+            ref={weightRef}
+            className="weight__select"
           >
-            {weight.emoji + " " + weight.name}
+            {weights.map((w) => {
+              return (
+                <option key={w.id} value={w.id}>
+                  {w.emoji + " " + w.name}
+                </option>
+              );
+            })}
+          </Form.Control>
+          <Button
+            type="submit"
+            onClick={(evt) => {
+              evt.preventDefault(); // Prevent browser from submitting the form
+              changeWeight();
+            }}
+            className="btn btn-primary"
+          >
+            Save
           </Button>
-        )}
+        </div>
       </section>
     </>
   );

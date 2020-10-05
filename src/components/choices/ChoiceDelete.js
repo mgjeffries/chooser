@@ -3,6 +3,7 @@ import { ChoiceContext } from "./ChoiceProvider";
 import Button from "react-bootstrap/Button";
 import { ModalContext } from "../modals/ModalProvider";
 import Modal from "react-bootstrap/Modal";
+import { WeightSelect } from "../weights/WeightSelect";
 
 export const ChoiceDelete = (props) => {
   const { deleteChoice } = useContext(ChoiceContext);
@@ -11,8 +12,11 @@ export const ChoiceDelete = (props) => {
   return (
     <>
       <Modal.Header closeButton>
-        <Modal.Title>Are you sure you want to delete this choice?</Modal.Title>
+        <Modal.Title>Choice Settings</Modal.Title>
       </Modal.Header>
+      <Modal.Body>
+        <WeightSelect {...props} />
+      </Modal.Body>
       <Modal.Footer>
         <Button
           variant="danger"
@@ -23,7 +27,7 @@ export const ChoiceDelete = (props) => {
           }}
           className="btn"
         >
-          delete
+          delete this choice
         </Button>
         <Button variant="secondary" onClick={handleClose}>
           Close
