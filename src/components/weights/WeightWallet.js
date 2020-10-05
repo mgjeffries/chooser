@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { IntToWeight } from "./IntToWeight";
 import { WeightContext } from "./WeightProvider";
-import { WeightList } from "./WeightSelect";
+import { WeightSelect } from "./WeightSelect";
 import Card from "react-bootstrap/Card";
 import "./weightWallet.css";
 
@@ -32,7 +32,7 @@ export const WeightWallet = (props) => {
       <Card>
         <Card.Header as="h5" className="wallet__header">
           Tokens Used: {props.weightsUsed} / {walletsize}
-          <WeightList {...props} />
+          <WeightSelect {...props} />
         </Card.Header>
         <Card.Body>
           <Card.Text>

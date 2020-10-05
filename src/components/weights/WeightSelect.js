@@ -4,7 +4,7 @@ import { ChoiceContext } from "../choices/ChoiceProvider";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-export const WeightList = (props) => {
+export const WeightSelect = (props) => {
   const { weights, getWeights } = useContext(WeightContext);
   const { choices, getChoices, editChoice } = useContext(ChoiceContext);
   const [isWeightChanging, setIsWeightChanging] = useState(false);
