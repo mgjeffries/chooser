@@ -1,44 +1,53 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
-import { MDBContainer } from "mdbreact";
+import { FactorContext } from "../factors/FactorProvider";
+import { OptionContext } from "../options/OptionProvider";
 
-class ChartsPage extends React.Component {
-  state = {
-    dataDoughnut: {
-      labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
-      datasets: [
-        {
-          data: [300, 50, 100, 40, 120],
-          backgroundColor: [
-            "#F7464A",
-            "#46BFBD",
-            "#FDB45C",
-            "#949FB1",
-            "#4D5360",
-          ],
-          hoverBackgroundColor: [
-            "#FF5A5E",
-            "#5AD3D1",
-            "#FFC870",
-            "#A8B3C5",
-            "#616774",
-          ],
-        },
-      ],
-    },
-  };
+export const ScoreChart = (props) => {
+  const { factors, getFactors } = useContext(FactorContext);
+  const { options, getOptions } = useContext(OptionContext);
+  const [choiceFactors, setChoiceFactors] = useState([]);
+  const [choiceOptions, setChoiceOptions] = useState([]);
+  const [chartState, setChartState] = useState({});
 
-  render() {
-    return (
-      <MDBContainer>
-        <h3 className="mt-5">Doughnut chart</h3>
-        <Doughnut
-          data={this.state.dataDoughnut}
-          options={{ responsive: true }}
-        />
-      </MDBContainer>
-    );
-  }
-}
+  useEffect(() => {
+    getFactors();
+    getOptions();
+  }, []);
 
-export default ChartsPage;
+  useEffect(() => {
+    const choiceFactors = factors.filter((f) => f.choiceId === props.choice.id);
+    const choiceOptions = options.filter((f) => f.choiceId === props.choice.id);
+    setChoiceFactors(choiceFactors);
+    setChoiceOptions(choiceOptions);
+    const state = {
+      dataDoughnut: {
+        labels: choiceOptions.map((option) => option.name),
+        datasets: [
+          {
+            data: [300, 50, 100, 40, 120],
+            backgroundColor: [
+              "#F7464A",
+              "#46BFBD",
+              "#FDB45C",
+              "#949FB1",
+              "#4D5360",
+            ],
+            hoverBackgroundColor: [
+              "#FF5A5E",
+              "#5AD3D1",
+              "#FFC870",
+              "#A8B3C5",
+              "#616774",
+            ],
+          },
+        ],
+      },
+    };
+    setChartState(state);
+  }, [factors, options]);
+
+  return (
+    <Doughnut data={chartState.dataDoughnut} options={{ responsive: true }} />
+  );
+};
