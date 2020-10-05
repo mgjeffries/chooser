@@ -4,6 +4,9 @@ import { ModalContext } from "../modals/ModalProvider";
 import { ChoiceDelete } from "./ChoiceDelete";
 import { ChoiceContext } from "./ChoiceProvider";
 import "./choice.css";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export const ChoiceHeader = (props) => {
   const { editChoice } = useContext(ChoiceContext);
@@ -32,36 +35,43 @@ export const ChoiceHeader = (props) => {
 
       <div className="choice__name">
         {isChoiceNameChanging ? (
-          <>
-            <input
-              type="text"
-              defaultValue={props.choice.name}
-              ref={choiceRef}
-            ></input>
-            <Button
-              onClick={(evt) => {
-                changeName();
-              }}
-            >
-              Save
-            </Button>
-          </>
+          <Form>
+            <Row>
+              <Col>
+                <Form.Control
+                  type="text"
+                  defaultValue={props.choice.name}
+                  ref={choiceRef}
+                ></Form.Control>
+              </Col>
+              <Col>
+                <Button
+                  onClick={(evt) => {
+                    changeName();
+                  }}
+                >
+                  Save
+                </Button>
+              </Col>
+            </Row>
+          </Form>
         ) : (
           <>
-            <div
+            <Button
+              variant="secondary-outline"
               onClick={(evt) => {
                 setIsChoiceNameChanging(true);
               }}
               className="btn"
             >
               {props.choice.name}
-            </div>
+            </Button>
           </>
         )}
       </div>
 
       <Button
-        variant="secondary"
+        variant="secondary-outline"
         onClick={(evt) => {
           setModalContent(<ChoiceDelete {...props} />);
           handleShow();
