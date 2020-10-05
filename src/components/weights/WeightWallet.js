@@ -32,7 +32,6 @@ export const WeightWallet = (props) => {
       <Card>
         <Card.Header as="h5" className="wallet__header">
           Tokens Used: {props.weightsUsed} / {walletsize}
-          <WeightSelect {...props} />
         </Card.Header>
         <Card.Body>
           <Card.Text>
