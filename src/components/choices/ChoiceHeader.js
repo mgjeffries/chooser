@@ -61,13 +61,13 @@ export const ChoiceHeader = (props) => {
       </div>
 
       <Button
-        variant="danger"
+        variant="secondary"
         onClick={(evt) => {
           setModalContent(<ChoiceDelete {...props} />);
           handleShow();
         }}
       >
-        Delete
+        Settings
       </Button>
     </div>
   );
