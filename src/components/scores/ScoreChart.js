@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { FactorContext } from "../factors/FactorProvider";
 import { OptionContext } from "../options/OptionProvider";
+import { ScoreContext } from "./ScoreProvider";
 
 export const ScoreChart = (props) => {
   const { factors, getFactors } = useContext(FactorContext);
   const { options, getOptions } = useContext(OptionContext);
+  const { scores } = useContext(ScoreContext);
   const [choiceFactors, setChoiceFactors] = useState([]);
   const [choiceOptions, setChoiceOptions] = useState([]);
   const [chartState, setChartState] = useState({});
@@ -18,6 +20,17 @@ export const ScoreChart = (props) => {
   useEffect(() => {
     const choiceFactors = factors.filter((f) => f.choiceId === props.choice.id);
     const choiceOptions = options.filter((f) => f.choiceId === props.choice.id);
+    const optionScores = choiceOptions.map((option) => {
+      const scoreData =
+        scores.find((score) => score.optionId === option.id) || {};
+      if (scoreData.score > 0) {
+        return scoreData.score;
+      } else {
+        //negitive scores should display as 0% of chart
+        return 0;
+      }
+    });
+
     setChoiceFactors(choiceFactors);
     setChoiceOptions(choiceOptions);
     const state = {
@@ -25,7 +38,7 @@ export const ScoreChart = (props) => {
         labels: choiceOptions.map((option) => option.name),
         datasets: [
           {
-            data: [300, 50, 100, 40, 120],
+            data: optionScores,
             backgroundColor: [
               "#F7464A",
               "#46BFBD",
@@ -45,7 +58,7 @@ export const ScoreChart = (props) => {
       },
     };
     setChartState(state);
-  }, [factors, options]);
+  }, [factors, options, scores]);
 
   return (
     <Doughnut data={chartState.dataDoughnut} options={{ responsive: true }} />
