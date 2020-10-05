@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import { WeightContext } from "./WeightProvider";
 import { ChoiceContext } from "../choices/ChoiceProvider";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 export const WeightList = (props) => {
   const { weights, getWeights } = useContext(WeightContext);
@@ -38,8 +39,9 @@ export const WeightList = (props) => {
       <section className="weight__list">
         {isWeightChanging ? (
           <div>
-            <label htmlFor="weight">Assign a weight</label>
-            <select
+            <label htmlFor="weight">Pick a Token:</label>
+            <Form.Control
+              as="select"
               defaultValue={weight.id}
               name="weight"
               ref={weightRef}
@@ -52,7 +54,7 @@ export const WeightList = (props) => {
                   </option>
                 );
               })}
-            </select>
+            </Form.Control>
             <Button
               type="submit"
               onClick={(evt) => {
@@ -72,7 +74,7 @@ export const WeightList = (props) => {
             }}
             className="btn"
           >
-            {weight.emoji + " " + weight.name}
+            ...
           </Button>
         )}
       </section>
