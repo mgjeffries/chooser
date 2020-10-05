@@ -1,5 +1,10 @@
 .weight__wallet {
-  width: auto;
-  word-break: break-word;
+  margin: 1rem;
+}
+
+.wallet__header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   padding: 1rem;
 }

@@ -30,11 +30,11 @@ export const WeightWallet = (props) => {
   return (
     <div className="weight__wallet">
       <Card>
-        <Card.Header>
+        <Card.Header as="h5" className="wallet__header">
           Tokens Used: {props.weightsUsed} / {walletsize}
+          <WeightList {...props} />
         </Card.Header>
         <Card.Body>
-          <Card.Title>Special title treatment</Card.Title>
           <Card.Text>
             <span
               style={{
@@ -50,7 +50,7 @@ export const WeightWallet = (props) => {
               {IntToWeight(weightsRemaining(props.weightsUsed), props.choice)}
             </span>
           </Card.Text>
-          <WeightList {...props} />
+          {/* */}
         </Card.Body>
       </Card>
     </div>
