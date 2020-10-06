@@ -12,6 +12,7 @@ import { Rating } from "../ratings/Rating";
 import { ChoiceHeader } from "./ChoiceHeader";
 import { ScoreContext } from "../scores/ScoreProvider";
 import { WeightWallet } from "../weights/WeightWallet";
+import { ScoreChart } from "../scores/ScoreChart";
 
 export const ChoiceDetail = (props) => {
   const { choices, getChoices } = useContext(ChoiceContext);
@@ -89,6 +90,7 @@ export const ChoiceDetail = (props) => {
           weightsUsed={calculateChoiceWeightsUsed()}
           {...props}
         />
+        <ScoreChart choice={choice} />
       </section>
     </>
   );
