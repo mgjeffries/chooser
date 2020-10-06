@@ -20,11 +20,16 @@ export const ChoiceList = (props) => {
         <div className="choice__list">
           {choices.map((choice) => {
             return (
-              <Card body key={choice.id}>
-                <Link to={`/choices/${choice.id}`}>
-                  <h3>{choice.name}</h3>
-                </Link>
-                <ScoreChart choice={choice} {...props} />
+              <Card key={choice.id}>
+                <Card.Header
+                  as="h5"
+                  onClick={(evt) => props.history.push(`/choices/${choice.id}`)}
+                >
+                  {choice.name}
+                </Card.Header>
+                <Card.Body>
+                  <ScoreChart choice={choice} {...props} />
+                </Card.Body>
               </Card>
             );
           })}
