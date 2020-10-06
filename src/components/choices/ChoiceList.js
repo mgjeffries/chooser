@@ -3,6 +3,7 @@ import { ChoiceContext } from "./ChoiceProvider";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { ScoreChart } from "../scores/ScoreChart";
 
 const defaultWeightId = 9;
 
@@ -23,6 +24,7 @@ export const ChoiceList = (props) => {
                 <Link to={`/choices/${choice.id}`}>
                   <h3>{choice.name}</h3>
                 </Link>
+                <ScoreChart choice={choice} {...props} />
               </Card>
             );
           })}
