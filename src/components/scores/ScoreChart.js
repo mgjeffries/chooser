@@ -61,6 +61,16 @@ export const ScoreChart = (props) => {
   }, [factors, options, scores]);
 
   return (
-    <Doughnut data={chartState.dataDoughnut} options={{ responsive: true }} />
+    <Doughnut
+      data={chartState.dataDoughnut}
+      options={{
+        responsive: true,
+        legend: {
+          labels: {
+            fontSize: 24,
+          },
+        },
+      }}
+    />
   );
 };
