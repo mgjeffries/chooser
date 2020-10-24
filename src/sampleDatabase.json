@@ -1,0 +1,188 @@
+{
+  "users": [
+    {
+      "email": "a@a.a",
+      "password": "a",
+      "name": "a a",
+      "id": 1
+    },
+    {
+      "email": "b@b.b",
+      "password": "b",
+      "name": "b b",
+      "id": 2
+    }
+  ],
+  "weights": [
+    {
+      "id": 1,
+      "name": "Dollars",
+      "imagePath": "",
+      "emoji": "﹩"
+    },
+    {
+      "id": 2,
+      "name": "Euros",
+      "imagePath": "",
+      "emoji": "€"
+    },
+    {
+      "id": 3,
+      "name": "Hours",
+      "imagePath": "",
+      "emoji": "⏳"
+    },
+    {
+      "id": 4,
+      "name": "Days",
+      "imagePath": "",
+      "emoji": "🌞"
+    },
+    {
+      "id": 5,
+      "name": "Apples",
+      "imagePath": "",
+      "emoji": "🍎"
+    },
+    {
+      "id": 6,
+      "name": "Tacos",
+      "imagePath": "",
+      "emoji": "🌮"
+    },
+    {
+      "id": 7,
+      "name": "Burgers",
+      "imagePath": "",
+      "emoji": "🍔"
+    },
+    {
+      "id": 8,
+      "name": "Cash Bags",
+      "imagePath": "",
+      "emoji": "💰"
+    },
+    {
+      "id": 9,
+      "name": "Gold Stars",
+      "imagePath": "",
+      "emoji": "⭐️"
+    },
+    {
+      "id": 10,
+      "name": "Race Cars",
+      "imagePath": "",
+      "emoji": "🏎"
+    }
+  ],
+  "choices": [
+    {
+      "name": "Where to eat",
+      "userId": 1,
+      "weightId": 9,
+      "id": 1
+    }
+  ],
+  "factors": [
+    {
+      "name": "Taste",
+      "choiceId": 1,
+      "multiplier": 1,
+      "id": 1
+    },
+    {
+      "name": "Distance",
+      "choiceId": 1,
+      "multiplier": 1,
+      "id": 2
+    },
+    {
+      "name": "Cost",
+      "choiceId": 1,
+      "multiplier": 1,
+      "id": 3
+    }
+  ],
+  "options": [
+    {
+      "name": "Chipotle",
+      "choiceId": 1,
+      "id": 1
+    },
+    {
+      "name": "Taco Bell",
+      "choiceId": 1,
+      "id": 2
+    },
+    {
+      "name": "Jimmi John's",
+      "choiceId": 1,
+      "id": 3
+    }
+  ],
+  "ratings": [
+    {
+      "factorId": 1,
+      "optionId": 1,
+      "choiceId": 1,
+      "score": 9,
+      "id": 1
+    },
+    {
+      "factorId": 1,
+      "optionId": 2,
+      "choiceId": 1,
+      "score": -8,
+      "id": 2
+    },
+    {
+      "factorId": 1,
+      "optionId": 3,
+      "choiceId": 1,
+      "score": 6,
+      "id": 3
+    },
+    {
+      "factorId": 2,
+      "optionId": 1,
+      "choiceId": 1,
+      "score": -1,
+      "id": 4
+    },
+    {
+      "factorId": 2,
+      "optionId": 2,
+      "choiceId": 1,
+      "score": -1,
+      "id": 5
+    },
+    {
+      "factorId": 2,
+      "optionId": 3,
+      "choiceId": 1,
+      "score": -1,
+      "id": 6
+    },
+    {
+      "factorId": 3,
+      "optionId": 1,
+      "choiceId": 1,
+      "score": -2,
+      "id": 7
+    },
+    {
+      "factorId": 3,
+      "optionId": 2,
+      "choiceId": 1,
+      "score": -1,
+      "id": 8
+    },
+    {
+      "factorId": 3,
+      "optionId": 3,
+      "choiceId": 1,
+      "score": -2,
+      "id": 9
+    }
+  ]
+}
