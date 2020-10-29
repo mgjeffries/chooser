@@ -16,6 +16,19 @@ Stuck in a difficult decision? Chooser helps you cut through decision block by h
 
 ### How to install
 
+Requirements:
+- NPM (https://www.npmjs.com/)
+- json-server
+
+1. Clone the repo by running `git clone https://github.com/mgjeffries/chooser.git` in the terminal
+1. Run `cd chooser` to move into the project repo
+1. Run `npm install` to set up the react app
+1. If you don't already have json-server, run `npm install json-server`
+1. Open a new terminal window, and run `cd src` to navigate to the next directory
+1. In this window, run `json-server -p 8088 sampleDatabase.json` to start the database
+1. In In the previous terminal window, run `npm start` to start the react app
+1. A browser window will open. You can register a user, and create a choice. Happy choosing! 📊 ✅ ❎
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 To view the create react app instructions go [here](./create-react-app-instructions.md).
