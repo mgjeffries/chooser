@@ -9,9 +9,7 @@ export const Login = (props) => {
   const passwordDialog = useRef();
 
   const existingUserCheck = () => {
-    return fetch(
-      `https://chooser-server.herokuapp.com/users?email=${email.current.value}`
-    )
+    return fetch(`http://localhost:8088/users?email=${email.current.value}`)
       .then((_) => _.json())
       .then((user) => (user.length ? user[0] : false));
   };

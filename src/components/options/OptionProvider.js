@@ -6,13 +6,13 @@ export const OptionProvider = (props) => {
   const [options, setOptions] = useState([]);
 
   const getOptions = () => {
-    return fetch("https://chooser-server.herokuapp.com/options")
+    return fetch("http://localhost:8088/options")
       .then((res) => res.json())
       .then(setOptions);
   };
 
   const addOption = (option) => {
-    return fetch("https://chooser-server.herokuapp.com/options", {
+    return fetch("http://localhost:8088/options", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export const OptionProvider = (props) => {
   };
 
   const editOption = (option) => {
-    return fetch(`https://chooser-server.herokuapp.com/options/${option.id}`, {
+    return fetch(`http://localhost:8088/options/${option.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export const OptionProvider = (props) => {
   };
 
   const deleteOption = (option) => {
-    return fetch(`https://chooser-server.herokuapp.com/options/${option.id}`, {
+    return fetch(`http://localhost:8088/options/${option.id}`, {
       method: "DELETE",
     }).then(getOptions);
   };
