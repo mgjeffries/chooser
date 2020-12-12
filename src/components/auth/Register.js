@@ -11,7 +11,7 @@ export const Register = (props) => {
 
   const existingUserCheck = () => {
     return fetch(
-      `https://chooser-server.herokuapp.com/users?email=${email.current.value}`
+      `http://chooser-server.herokuapp.com/users?email=${email.current.value}`
     )
       .then((_) => _.json())
       .then((user) => !!user.length);
@@ -22,7 +22,7 @@ export const Register = (props) => {
 
     if (password.current.value === verifyPassword.current.value) {
       existingUserCheck().then(() => {
-        fetch("https://chooser-server.herokuapp.com/users", {
+        fetch("http://chooser-server.herokuapp.com/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

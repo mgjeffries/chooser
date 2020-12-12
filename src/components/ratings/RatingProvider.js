@@ -6,13 +6,13 @@ export const RatingProvider = (props) => {
   const [ratings, setRatings] = useState([]);
 
   const getRatings = () => {
-    return fetch("https://chooser-server.herokuapp.com/ratings")
+    return fetch("http://chooser-server.herokuapp.com/ratings")
       .then((res) => res.json())
       .then(setRatings);
   };
 
   const addRating = (rating) => {
-    return fetch("https://chooser-server.herokuapp.com/ratings", {
+    return fetch("http://chooser-server.herokuapp.com/ratings", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export const RatingProvider = (props) => {
   };
 
   const editRating = (rating) => {
-    return fetch(`https://chooser-server.herokuapp.com/ratings/${rating.id}`, {
+    return fetch(`http://chooser-server.herokuapp.com/ratings/${rating.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export const RatingProvider = (props) => {
   };
 
   const deleteRating = (rating) => {
-    return fetch(`https://chooser-server.herokuapp.com/ratings/${rating.id}`, {
+    return fetch(`http://chooser-server.herokuapp.com/ratings/${rating.id}`, {
       method: "DELETE",
     }).then(getRatings);
   };

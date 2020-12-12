@@ -10,7 +10,7 @@ export const Login = (props) => {
 
   const existingUserCheck = () => {
     return fetch(
-      `https://chooser-server.herokuapp.com/users?email=${email.current.value}`
+      `http://chooser-server.herokuapp.com/users?email=${email.current.value}`
     )
       .then((_) => _.json())
       .then((user) => (user.length ? user[0] : false));
