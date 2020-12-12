@@ -6,13 +6,13 @@ export const FactorProvider = (props) => {
   const [factors, setFactors] = useState([]);
 
   const getFactors = () => {
-    return fetch("http://chooser-server.herokuapp.com/factors")
+    return fetch("https://chooser-server.herokuapp.com/factors")
       .then((res) => res.json())
       .then(setFactors);
   };
 
   const addFactor = (factor) => {
-    return fetch("http://chooser-server.herokuapp.com/factors", {
+    return fetch("https://chooser-server.herokuapp.com/factors", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export const FactorProvider = (props) => {
   };
 
   const editFactor = (factor) => {
-    return fetch(`http://chooser-server.herokuapp.com/factors/${factor.id}`, {
+    return fetch(`https://chooser-server.herokuapp.com/factors/${factor.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export const FactorProvider = (props) => {
   };
 
   const deleteFactor = (factor) => {
-    return fetch(`http://chooser-server.herokuapp.com/factors/${factor.id}`, {
+    return fetch(`https://chooser-server.herokuapp.com/factors/${factor.id}`, {
       method: "DELETE",
     }).then(getFactors);
   };
