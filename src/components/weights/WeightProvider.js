@@ -6,13 +6,13 @@ export const WeightProvider = (props) => {
   const [weights, setWeights] = useState([]);
 
   const getWeights = () => {
-    return fetch("http://localhost:8088/weights")
+    return fetch("https://chooser-server.herokuapp.com/weights")
       .then((res) => res.json())
       .then(setWeights);
   };
 
   const addWeight = (weight) => {
-    return fetch("http://localhost:8088/weights", {
+    return fetch("https://chooser-server.herokuapp.com/weights", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
