@@ -7,7 +7,7 @@ export const ChoiceProvider = (props) => {
 
   const getChoices = () => {
     return (
-      fetch("http://localhost:8088/choices")
+      fetch("https://chooser-server.herokuapp.com/choices")
         .then((res) => res.json())
         // Filter choices to only expose choices for the current user
         .then((choices) =>
@@ -22,7 +22,7 @@ export const ChoiceProvider = (props) => {
 
   const addChoice = (choice) => {
     let addedchoice = {};
-    return fetch("http://localhost:8088/choices", {
+    return fetch("https://chooser-server.herokuapp.com/choices", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +36,7 @@ export const ChoiceProvider = (props) => {
   };
 
   const editChoice = (choice) => {
-    return fetch(`http://localhost:8088/choices/${choice.id}`, {
+    return fetch(`https://chooser-server.herokuapp.com/choices/${choice.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export const ChoiceProvider = (props) => {
   };
 
   const deleteChoice = (choice) => {
-    return fetch(`http://localhost:8088/choices/${choice.id}`, {
+    return fetch(`https://chooser-server.herokuapp.com/choices/${choice.id}`, {
       method: "DELETE",
     }).then(getChoices);
   };
