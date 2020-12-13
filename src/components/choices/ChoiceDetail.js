@@ -52,35 +52,37 @@ export const ChoiceDetail = (props) => {
     <>
       <section className="choice">
         <ChoiceHeader {...props} choice={choice} />
-        <Table striped bordered>
-          <thead>
-            <tr>
-              <th></th>
-              {choiceFactors.map((cf) => {
-                return <Factor factor={cf} key={cf.id} />;
+        <div className="table-responsive">
+          <Table striped bordered>
+            <thead>
+              <tr>
+                <th></th>
+                {choiceFactors.map((cf) => {
+                  return <Factor factor={cf} key={cf.id} />;
+                })}
+              </tr>
+            </thead>
+            <tbody>
+              {choiceOptions.map((cO) => {
+                return (
+                  <tr key={cO.id}>
+                    <Option option={cO} />
+                    {choiceFactors.map((cf) => {
+                      return (
+                        <Rating
+                          option={cO}
+                          factor={cf}
+                          choice={choice}
+                          key={cf.id}
+                        />
+                      );
+                    })}
+                  </tr>
+                );
               })}
-            </tr>
-          </thead>
-          <tbody>
-            {choiceOptions.map((cO) => {
-              return (
-                <tr key={cO.id}>
-                  <Option option={cO} />
-                  {choiceFactors.map((cf) => {
-                    return (
-                      <Rating
-                        option={cO}
-                        factor={cf}
-                        choice={choice}
-                        key={cf.id}
-                      />
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+            </tbody>
+          </Table>
+        </div>
         <div className="choice__tableControls">
           <AddOption {...props} />
           <AddFactor {...props} />

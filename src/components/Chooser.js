@@ -7,7 +7,7 @@ import { Register } from "./auth/Register";
 
 export const Chooser = () => {
   return (
-    <>
+    <main className="chooser-main">
       <Route
         render={() => {
           if (localStorage.getItem("chooser_user")) {
@@ -21,6 +21,6 @@ export const Chooser = () => {
       />
       <Route path="/login" render={(props) => <Login {...props} />} />
       <Route path="/register" render={(props) => <Register {...props} />} />
-    </>
+    </main>
   );
 };
